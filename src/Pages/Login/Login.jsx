@@ -1,45 +1,103 @@
-const Login = () => {
-	return (
-		<div className="flex flex-col sm:flex-row">
-			{/* Login Form */}
-			<div className="flex-1 bg-gradient-to-br from-purple-500 to-indigo-500 py-10 px-6 sm:px-10 lg:px-16 xl:px-20">
-				<h1 className="text-3xl sm:text-4xl text-white mb-4">Login</h1>
-				<form className="flex flex-col space-y-4">
-					<input type="text" placeholder="Name" className="input" />
-					<input type="email" placeholder="Email" className="input" />
-					<button className="btn">Login</button>
-				</form>
-				<div className="mt-6">
-					<button className="btn btn-google">
-						<span className="flex items-center justify-center">
-							<svg
-								className="h-5 w-5 mr-2"
-								fill="currentColor"
-								viewBox="0 0 20 20"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									fillRule="evenodd"
-									d="M2 10c0-2.168.78-3.683 1.93-4.848C4.905 4.517 6.61 4 10 4h.1c3.34 0 5.045.51 6.17 1.16C17.19 6.317 18 7.832 18 10c0 2.168-.78 3.683-1.93 4.848C14.905 15.483 13.2 16 9.8 16h-.1c-3.34 0-5.045-.51-6.17-1.16C2.81 13.683 2 12.168 2 10zm15-1h-2v2h-2v2h2v2h2v-2h2v-2h-2z"
-									clipRule="evenodd"
-								/>
-							</svg>
-							Sign in with Google
-						</span>
-					</button>
-				</div>
-			</div>
+import { useForm } from "react-hook-form";
+// import { ReactComponent as LoginIllustration } from "./login-illustration.svg";
 
-			{/* SVG Animation */}
-			<div className="flex-1 hidden sm:block">
-				<img
-					src="path_to_your_svg_image"
-					alt="Login Animation"
-					className="w-full h-full object-cover"
-				/>
+const LoginForm = () => {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
+
+	const onSubmit = (data) => {
+		console.log(data);
+	};
+
+	return (
+		<div className="flex h-screen">
+			<div className="w-1/2 bg-gradient-to-br from-purple-500 to-indigo-500 p-8 flex items-center justify-center">
+				<form
+					className="w-3/4 bg-white shadow-md rounded px-8 pt-6 pb-8"
+					onSubmit={handleSubmit(onSubmit)}
+				>
+					<div className="mb-4">
+						<label
+							className="block text-gray-700 text-sm font-bold mb-2"
+							htmlFor="email"
+						>
+							Email
+						</label>
+						<input
+							className={`w-full px-3 py-2 border rounded-md outline-none text-gray-700 ${
+								errors.email ? "border-red-500" : ""
+							}`}
+							type="email"
+							placeholder="Enter your email"
+							{...register("email", { required: true })}
+						/>
+						{errors.email && (
+							<p className="text-red-500 text-xs italic">Email is required</p>
+						)}
+					</div>
+					<div className="mb-4">
+						<label
+							className="block text-gray-700 text-sm font-bold mb-2"
+							htmlFor="password"
+						>
+							Password
+						</label>
+						<input
+							className={`w-full px-3 py-2 border rounded-md outline-none text-gray-700 ${
+								errors.password ? "border-red-500" : ""
+							}`}
+							type="password"
+							placeholder="Enter your password"
+							{...register("password", {
+								required: true,
+								minLength: 6,
+								maxLength: 20,
+								pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+							})}
+						/>
+						{errors.password?.type === "required" && (
+							<p className="text-red-600">Password is required</p>
+						)}
+						{errors.password?.type === "minLength" && (
+							<p className="text-red-600">Password must be 6 characters</p>
+						)}
+						{errors.password?.type === "maxLength" && (
+							<p className="text-red-600">
+								Password must be less than 20 characters
+							</p>
+						)}
+						{errors.password?.type === "pattern" && (
+							<p className="text-red-600">
+								Password must have one Uppercase one lower case, one number and
+								one special character.
+							</p>
+						)}
+					</div>
+					<div className="flex items-center justify-between">
+						<button
+							className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+							type="submit"
+						>
+							Sign In
+						</button>
+						<a
+							className="inline-block align-baseline font-bold text-sm text-indigo-600 hover:text-indigo-800"
+							href="#"
+						>
+							Not registered?
+							<span className="text-blue-900">Click here to register.</span>
+						</a>
+					</div>
+				</form>
+			</div>
+			<div className="w-1/2 bg-indigo-100 flex items-center justify-center">
+				{/* <LoginIllustration className="w-2/3 h-auto" /> */}
 			</div>
 		</div>
 	);
 };
 
-export default Login;
+export default LoginForm;
