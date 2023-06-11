@@ -1,7 +1,8 @@
+import React from "react";
 import { useForm } from "react-hook-form";
-// import { ReactComponent as LoginIllustration } from "./login-illustration.svg";
+import { useSpring, animated } from "react-spring";
 
-const LoginForm = () => {
+const Register = () => {
 	const {
 		register,
 		handleSubmit,
@@ -11,6 +12,12 @@ const LoginForm = () => {
 	const onSubmit = (data) => {
 		console.log(data);
 	};
+
+	const illustrationAnimation = useSpring({
+		from: { opacity: 0, transform: "translateX(-100px)" },
+		to: { opacity: 1, transform: "translateX(0)" },
+		config: { duration: 1000 },
+	});
 
 	return (
 		<div className="flex h-screen">
@@ -22,14 +29,29 @@ const LoginForm = () => {
 					<div className="mb-4">
 						<label
 							className="block text-gray-700 text-sm font-bold mb-2"
+							htmlFor="name"
+						>
+							Name
+						</label>
+						<input
+							className="w-full px-3 py-2 border rounded-md outline-none text-gray-700"
+							type="text"
+							placeholder="Enter your name"
+							{...register("name", { required: true })}
+						/>
+						{errors.name && (
+							<p className="text-red-500 text-xs italic">Name is required</p>
+						)}
+					</div>
+					<div className="mb-4">
+						<label
+							className="block text-gray-700 text-sm font-bold mb-2"
 							htmlFor="email"
 						>
 							Email
 						</label>
 						<input
-							className={`w-full px-3 py-2 border rounded-md outline-none text-gray-700 ${
-								errors.email ? "border-red-500" : ""
-							}`}
+							className="w-full px-3 py-2 border rounded-md outline-none text-gray-700"
 							type="email"
 							placeholder="Enter your email"
 							{...register("email", { required: true })}
@@ -54,25 +76,13 @@ const LoginForm = () => {
 							{...register("password", {
 								required: true,
 								minLength: 6,
-								maxLength: 20,
-								pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+								pattern: /^(?=.*[a-z])(?=.*[A-Z])/,
 							})}
 						/>
-						{errors.password?.type === "required" && (
-							<p className="text-red-600">Password is required</p>
-						)}
-						{errors.password?.type === "minLength" && (
-							<p className="text-red-600">Password must be 6 characters</p>
-						)}
-						{errors.password?.type === "maxLength" && (
-							<p className="text-red-600">
-								Password must be less than 20 characters
-							</p>
-						)}
-						{errors.password?.type === "pattern" && (
-							<p className="text-red-600">
-								Password must have one Uppercase one lower case, one number and
-								one special character.
+						{errors.password && (
+							<p className="text-red-500 text-xs italic">
+								Password is required and must contain at least 6 characters with
+								at least 1 uppercase and 1 lowercase letter
 							</p>
 						)}
 					</div>
@@ -81,24 +91,21 @@ const LoginForm = () => {
 							className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 							type="submit"
 						>
-							Sign In
+							Register
 						</button>
-						<a
-							className="inline-block align-baseline font-bold text-sm text-indigo-600 hover:text-indigo-800"
-							href="#"
-						>
-							Not registered?
-							<span className="text-blue-900">Click here to register.</span>
-						</a>
 					</div>
 				</form>
 			</div>
 			<div className="w-1/2 bg-indigo-100 flex items-center justify-center">
-				{/* //TODO: svg animation */}
-				{/* <LoginIllustration className="w-2/3 h-auto" /> */}
+				<animated.div style={illustrationAnimation}>
+					<img
+						src="https://lottiefiles.com/107800-login-leady"
+						className="w-2/3 h-auto"
+					/>
+				</animated.div>
 			</div>
 		</div>
 	);
 };
 
-export default LoginForm;
+export default Register;
