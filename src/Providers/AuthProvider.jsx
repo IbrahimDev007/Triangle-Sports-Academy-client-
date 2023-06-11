@@ -1,13 +1,9 @@
-import {
-	createContext,
-	// useEffect,
-	useState,
-} from "react";
+import { createContext, useEffect, useState } from "react";
 import {
 	GoogleAuthProvider,
 	createUserWithEmailAndPassword,
 	getAuth,
-	//onAuthStateChanged,
+	onAuthStateChanged,
 	signInWithEmailAndPassword,
 	signInWithPopup,
 	signOut,
