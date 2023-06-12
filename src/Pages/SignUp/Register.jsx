@@ -1,16 +1,50 @@
+import axios, { Axios } from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useSpring, animated } from "react-spring";
+import useAuthHook from "../../hook/useAuthHook";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
+		reset,
 	} = useForm();
-
+	const navigate = useNavigate();
+	const { updateUserProfile, createUser } = useAuthHook();
 	const onSubmit = (data) => {
-		console.log(data);
+		createUser(data.email, data.password).then((result) => {
+			const regUser = result.user;
+			console.log(regUser);
+
+			updateUserProfile(data.name, data.photoURL)
+				.then(() => {
+					axios
+						.post("http://localhost:3000/users", {
+							name: data.name,
+							email: data.email,
+							role: "student",
+						})
+						.then((data) => {
+							console.log(data);
+							if (data.data.insertedId) {
+								reset();
+								Swal.fire({
+									position: "top-end",
+									icon: "success",
+									title: "User created successfully.",
+									showConfirmButton: false,
+									timer: 1500,
+								});
+								navigate("/");
+							}
+						});
+				})
+				.catch((error) => console.log(error));
+		});
 	};
 
 	const illustrationAnimation = useSpring({
@@ -41,6 +75,25 @@ const Register = () => {
 						/>
 						{errors.name && (
 							<p className="text-red-500 text-xs italic">Name is required</p>
+						)}
+					</div>
+					<div className="mb-4">
+						<label
+							className="block text-gray-700 text-sm font-bold mb-2"
+							htmlFor="photo"
+						>
+							Photo Url
+						</label>
+						<input
+							className="w-full px-3 py-2 border rounded-md outline-none text-gray-700"
+							type="text"
+							placeholder="Enter your photoURL"
+							{...register("photoURL", { required: true })}
+						/>
+						{errors.photoURL && (
+							<p className="text-red-500 text-xs italic">
+								photoURL is required
+							</p>
 						)}
 					</div>
 					<div className="mb-4">

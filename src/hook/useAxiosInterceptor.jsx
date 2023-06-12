@@ -11,27 +11,17 @@ const useAxiosInterceptor = () => {
 		// Create an instance of Axios with the desired configuration
 
 		// Add a request interceptor
-		instance.interceptors.request.use(
-			async (config) => {
-				try {
-					// Retrieve the JWT token from local storage
-					const token = localStorage.getItem("jwtToken");
+		instance.interceptors.request.use((config) => {
+			// Retrieve the JWT token from local storage
+			const token = localStorage.getItem("jwtToken");
 
-					// Set the token in the request headers
-					if (token) {
-						config.headers.Authorization = `Bearer ${token}`;
-					}
-
-					return config;
-				} catch (error) {
-					console.log("Error retrieving JWT token:", error);
-					return Promise.reject(error);
-				}
-			},
-			(error) => {
-				return Promise.reject(error);
+			// Set the token in the request headers
+			if (token) {
+				config.headers.Authorization = `Bearer ${token}`;
 			}
-		);
+
+			return config;
+		});
 
 		// Add a response interceptor
 		instance.interceptors.response.use(
@@ -40,21 +30,12 @@ const useAxiosInterceptor = () => {
 			},
 			async (error) => {
 				// Handle 401 Unauthorized error
-				if (error.response.status === 401) {
+				if (error.response.status === 401 || error.response.status === 404) {
 					// Redirect or perform any other action
-					console.log("Unauthorized");
 					await logOut();
 					navigate("/login");
 				}
-
 				// Handle 404 Not Found error
-				if (error.response.status === 404) {
-					// Display an error message or perform any other action
-					console.log("Not Found");
-					await logOut();
-					navigate("/login");
-				}
-
 				return Promise.reject(error);
 			}
 		);

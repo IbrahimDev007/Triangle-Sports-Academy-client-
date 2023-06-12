@@ -1,9 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const user = true;
+import useAuthHook from "../hook/useAuthHook";
+
 const admin = false;
 const instractor = false;
 const Navbar = () => {
+	const { user, logOut } = useAuthHook();
+	const handleLogOut = () => {
+		logOut()
+			.then(() => {})
+			.catch((error) => console.log(error));
+	};
 	const nav = (
 		<>
 			<li>
@@ -19,7 +26,12 @@ const Navbar = () => {
 			{user || admin || instractor ? (
 				<>
 					<li>
-						<Link>logout</Link>
+						<button onClick={handleLogOut} className="btn btn-ghost">
+							LogOut
+						</button>
+					</li>
+					<li>
+						<Link to="/signup">Register</Link>
 					</li>
 					<li>
 						<Link>dashboard</Link>
@@ -28,7 +40,7 @@ const Navbar = () => {
 			) : (
 				<>
 					<li>
-						<Link>login</Link>
+						<Link to="/login">login</Link>
 					</li>
 				</>
 			)}
