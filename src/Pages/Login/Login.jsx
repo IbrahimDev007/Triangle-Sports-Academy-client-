@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import useAuthHook from "../../hook/useAuthHook";
 
 const LoginForm = () => {
@@ -8,13 +9,34 @@ const LoginForm = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
-		reset,
 	} = useForm();
-	const { signIn } = useAuthHook();
+	const { signIn, googleSignIn } = useAuthHook();
 	const navigate = useNavigate();
 	const location = useLocation();
 
 	const from = location.state?.from?.pathname || "/";
+	const handle_google = () => {
+		googleSignIn().then((result) => {
+			const loggedInUser = result.user;
+			console.log(loggedInUser);
+			const saveUser = {
+				name: loggedInUser.displayName,
+				email: loggedInUser.email,
+				role: "admin",
+			};
+			fetch("http://localhost:3000/users", {
+				method: "POST",
+				headers: {
+					"content-type": "application/json",
+				},
+				body: JSON.stringify(saveUser),
+			})
+				.then((res) => res.json())
+				.then(() => {
+					navigate(from, { replace: true });
+				});
+		});
+	};
 
 	const onSubmit = (data) => {
 		signIn(data.email, data.password).then((result) => {
@@ -116,6 +138,14 @@ const LoginForm = () => {
 								Not registered?
 								<span className="text-blue-900">Click here to register.</span>
 							</Link>
+						</div>
+						<div className="mx-auto">
+							<button
+								className="btn btn-ghost btn-circle"
+								onClick={handle_google}
+							>
+								Google
+							</button>
 						</div>
 					</form>
 				</div>
