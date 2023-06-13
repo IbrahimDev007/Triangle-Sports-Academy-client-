@@ -1,11 +1,10 @@
 import { NavLink, Outlet } from "react-router-dom";
-
 import useAdminHook from "../hook/useAdminHook";
 import useAuthHook from "../hook/useAuthHook";
 import useInstructorHook from "../hook/useInstractorHook";
 
 const Dashboard = () => {
-	// const isAdmin = true;
+	// const Admin = true;
 	const { user } = useAuthHook();
 	const [Admin] = useAdminHook();
 	const [Instructor] = useInstructorHook();

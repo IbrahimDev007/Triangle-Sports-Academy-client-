@@ -38,10 +38,10 @@ const Navbar = () => {
 					</li>
 
 					<li>
-						{user && <Link to="/user/dashboard">User Dashboard</Link>}
-						{Admin && <Link to="/admin/dashboard">Admin Dashboard</Link>}
+						{user && <Link to="/dashboard/selectclasses">User Dashboard</Link>}
+						{Admin && <Link to="/dashboard/manageClass">Admin Dashboard</Link>}
 						{Instructor && (
-							<Link to="/instructor/dashboard">Instructor Dashboard</Link>
+							<Link to="/dashboard/Addclasses">Instructor Dashboard</Link>
 						)}
 					</li>
 				</>
