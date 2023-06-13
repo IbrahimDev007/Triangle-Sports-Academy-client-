@@ -3,7 +3,7 @@ import axios from "axios";
 
 const useAxiosInterceptor = () => {
 	const instanceSecure = axios.create({
-		baseURL: "https://api.example.com",
+		baseURL: "https://localhost:3000",
 	});
 	const { logOut } = useAuth();
 	const navigate = useNavigate();
@@ -11,9 +11,9 @@ const useAxiosInterceptor = () => {
 		// Create an instance of Axios with the desired configuration
 
 		// Add a request interceptor
-		instance.interceptors.request.use((config) => {
+		instanceSecure.interceptors.request.use((config) => {
 			// Retrieve the JWT token from local storage
-			const token = localStorage.getItem("jwtToken");
+			const token = localStorage.getItem("access-verify-token");
 
 			// Set the token in the request headers
 			if (token) {
@@ -24,7 +24,7 @@ const useAxiosInterceptor = () => {
 		});
 
 		// Add a response interceptor
-		instance.interceptors.response.use(
+		instanceSecure.interceptors.response.use(
 			(response) => {
 				response;
 			},
@@ -41,7 +41,7 @@ const useAxiosInterceptor = () => {
 		);
 
 		// Use the Axios instance for making requests
-		// Example: await instance.get('/api/data') or await instance.post('/api/data', requestData)
+		// Example: await instanceSecure.get('/api/data') or await instance.post('/api/data', requestData)
 	}, [logOut, navigate]);
 
 	return [instanceSecure];
