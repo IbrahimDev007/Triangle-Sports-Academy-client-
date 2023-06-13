@@ -1,21 +1,21 @@
 import { useEffect } from "react";
 import axios from "axios";
+import useAuthHook from "./useAuthHook";
+import { useNavigate } from "react-router-dom";
 
 const useAxiosInterceptor = () => {
 	const instanceSecure = axios.create({
-		baseURL: "https://localhost:3000",
+		baseURL: "http://localhost:3000",
 	});
-	const { logOut } = useAuth();
+	const { logOut } = useAuthHook();
 	const navigate = useNavigate();
 	useEffect(() => {
 		// Create an instance of Axios with the desired configuration
 
 		// Add a request interceptor
 		instanceSecure.interceptors.request.use((config) => {
-			// Retrieve the JWT token from local storage
 			const token = localStorage.getItem("access-verify-token");
 
-			// Set the token in the request headers
 			if (token) {
 				config.headers.Authorization = `Bearer ${token}`;
 			}

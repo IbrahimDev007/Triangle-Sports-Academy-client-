@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useAdminHook from "../hook/useAdminHook";
 import useAuthHook from "../hook/useAuthHook";
+import useInstructorHook from "../hook/useInstractorHook";
 
-const admin = false;
-const instractor = false;
 const Navbar = () => {
 	const { user, logOut } = useAuthHook();
+	const [Admin] = useAdminHook();
+	const [Instructor] = useInstructorHook();
+	console.log(user, Admin, Instructor);
+
 	const handleLogOut = () => {
 		logOut()
 			.then(() => {})
@@ -14,27 +18,31 @@ const Navbar = () => {
 	const nav = (
 		<>
 			<li>
-				<Link>Home</Link>
+				<Link to="/">Home</Link>
 			</li>
 			<li>
-				<Link>Instractors</Link>
+				<Link to="/instructor">Instractos</Link>
 			</li>
 			<li>
-				<Link>classes</Link>
+				<Link to="/classes">classes</Link>
 			</li>
-
-			{user || admin || instractor ? (
+			<li>
+				<Link to="/signup">Register</Link>
+			</li>
+			{user || Admin || Instructor ? (
 				<>
 					<li>
 						<button onClick={handleLogOut} className="btn btn-ghost">
 							LogOut
 						</button>
 					</li>
+
 					<li>
-						<Link to="/signup">Register</Link>
-					</li>
-					<li>
-						<Link>dashboard</Link>
+						{user && <Link to="/user/dashboard">User Dashboard</Link>}
+						{Admin && <Link to="/admin/dashboard">Admin Dashboard</Link>}
+						{Instructor && (
+							<Link to="/instructor/dashboard">Instructor Dashboard</Link>
+						)}
 					</li>
 				</>
 			) : (
