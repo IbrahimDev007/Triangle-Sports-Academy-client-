@@ -1,8 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../Layout/Dashboard";
 import Main from "../Layout/Main";
+import AddClasses from "../Pages/AddClasses/AddClasses";
+import EnrollClasses from "../Pages/EnrollClases/EnrollClasses";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Login from "../Pages/Login/Login";
+import ManageUser from "../Pages/ManageUser/ManageUser";
+import Myclasses from "../Pages/Myclasses/Myclasses";
+import AllPayment from "../Pages/PaymentHistory/AllPayment";
+import SelectClasses from "../Pages/SelectClasses/SelectClasses";
 import Register from "../Pages/SignUp/Register";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
@@ -43,7 +49,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "/enroll",
-				element: <Enroll />,
+				element: <EnrollClasses />,
 			},
 			{
 				path: "/allpayment",
@@ -52,21 +58,37 @@ const router = createBrowserRouter([
 			// instructor route
 			{
 				path: "/myclasses",
-				element: <InstructorRoute></InstructorRoute>,
+				element: (
+					<InstructorRoute>
+						<Myclasses></Myclasses>
+					</InstructorRoute>
+				),
 			},
 			{
 				path: "/addclasses",
-				element: <InstructorRoute></InstructorRoute>,
+				element: (
+					<InstructorRoute>
+						<AddClasses></AddClasses>
+					</InstructorRoute>
+				),
 			},
 
 			//admin route
 			{
 				path: "/manageUser",
-				element: <AdminRoute></AdminRoute>,
+				element: (
+					<AdminRoute>
+						<ManageUser></ManageUser>
+					</AdminRoute>
+				),
 			},
 			{
 				path: "/manageClass",
-				element: <AdminRoute></AdminRoute>,
+				element: (
+					<AdminRoute>
+						<Myclasses></Myclasses>
+					</AdminRoute>
+				),
 			},
 		],
 	},
