@@ -3,12 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 
 const AddClasses = () => {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-		reset,
-	} = useForm();
+	const { register, handleSubmit } = useForm();
 	const onSubmit = (data) => {
 		console.log(data);
 	};
