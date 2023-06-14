@@ -1,8 +1,12 @@
 import { Helmet } from "react-helmet-async";
 // import Swal from "sweetalert2";
 // import { Link } from "react-router-dom";
-
+import { useForm } from "react-hook-form";
 const ManageClasses = () => {
+	const { register, handleSubmit } = useForm();
+	const onSubmit = (data) => {
+		console.log(data);
+	};
 	return (
 		<div>
 			{" "}
@@ -55,7 +59,12 @@ const ManageClasses = () => {
 									<ul className="flex flex-col">
 										<li className=" btn btn-ghost  btn-sm">Approved</li>
 										<li className="btn btn-ghost btn-sm">Denay</li>
-										<li className=" btn btn-ghost btn-sm">Feedback</li>
+										<li
+											className=" btn btn-ghost btn-sm"
+											onClick={() => window.my_modal_3.showModal()}
+										>
+											Feedback
+										</li>
 									</ul>
 								</td>
 							</tr>
@@ -63,6 +72,24 @@ const ManageClasses = () => {
 							{/* } */}
 						</tbody>
 					</table>
+					<dialog id="my_modal_3" className="modal">
+						<form
+							method="dialog"
+							className="modal-box"
+							onSubmit={handleSubmit(onSubmit)}
+						>
+							<button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+								✕
+							</button>
+							<h3 className="font-bold text-lg">Feedback!</h3>
+							<input
+								type="text"
+								placeholder="class"
+								className="input input-bordered"
+								{...register("class", { required: true })}
+							/>
+						</form>
+					</dialog>
 				</div>
 			</div>
 		</div>
