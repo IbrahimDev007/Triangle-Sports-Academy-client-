@@ -2,8 +2,11 @@ import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../Layout/Dashboard";
 import Main from "../Layout/Main";
 import AddClasses from "../Pages/AddClasses/AddClasses";
+import Classes from "../Pages/Classes/Classes";
 import EnrollClasses from "../Pages/EnrollClases/EnrollClasses";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import Home from "../Pages/Home/Home";
+import Instractor from "../Pages/Instractor/Instractor";
 import Login from "../Pages/Login/Login";
 import ManageUser from "../Pages/ManageUser/ManageUser";
 import ManageClasses from "../Pages/MangeClasses/ManageClasses";
@@ -22,8 +25,16 @@ const router = createBrowserRouter([
 		errorElement: <ErrorPage />,
 		children: [
 			{
+				path: "/",
+				element: <Home />,
+			},
+			{
 				path: "classes",
-				element: <classes />,
+				element: <Classes />,
+			},
+			{
+				path: "instructor",
+				element: <Instractor />,
 			},
 			{
 				path: "login",
