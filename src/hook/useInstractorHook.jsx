@@ -6,14 +6,16 @@ const useInstructorHook = () => {
 	const { user, loading } = useAuthHook();
 	const [instanceSecure] = useAxiosInterceptor();
 
-	const { data: Instructor, isLoading: isinstructorLoading } = useQuery({
+	const { data: instructor, isLoading: isinstructorLoading } = useQuery({
 		queryKey: ["Instructor", user?.email],
 		enabled: !loading,
 		queryFn: async () => {
 			const res = await instanceSecure.get(`/users/instructor/${user?.email}`);
+
 			return res.data.instructor;
 		},
 	});
-	return [Instructor, isinstructorLoading];
+
+	return [instructor, isinstructorLoading];
 };
 export default useInstructorHook;

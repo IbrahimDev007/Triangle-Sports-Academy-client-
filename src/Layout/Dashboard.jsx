@@ -7,7 +7,7 @@ const Dashboard = () => {
 	// const Admin = true;
 	const { user } = useAuthHook();
 	const [Admin] = useAdminHook();
-	const [Instructor] = useInstructorHook();
+	const [instructor] = useInstructorHook();
 
 	return (
 		<div className="drawer drawer-mobile ">
@@ -34,7 +34,7 @@ const Dashboard = () => {
 							</li>
 						</>
 					)}
-					{user && (
+					{!Admin && !instructor && user && (
 						<>
 							<li>
 								<NavLink to="/dashboard/selectclasses">
@@ -50,7 +50,7 @@ const Dashboard = () => {
 							<li></li>
 						</>
 					)}
-					{Instructor && (
+					{instructor && (
 						<>
 							<li>
 								<NavLink to="/dashboard/addclasses">Add classes</NavLink>

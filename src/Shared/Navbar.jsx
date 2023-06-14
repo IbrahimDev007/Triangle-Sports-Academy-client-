@@ -7,8 +7,7 @@ import useInstructorHook from "../hook/useInstractorHook";
 const Navbar = () => {
 	const { user, logOut } = useAuthHook();
 	const [Admin] = useAdminHook();
-	const [Instructor] = useInstructorHook();
-	console.log(user, Admin, Instructor);
+	const [instructor] = useInstructorHook();
 
 	const handleLogOut = () => {
 		logOut()
@@ -29,7 +28,7 @@ const Navbar = () => {
 			<li>
 				<Link to="/signup">Register</Link>
 			</li>
-			{user || Admin || Instructor ? (
+			{user || Admin || instructor ? (
 				<>
 					<li>
 						<button onClick={handleLogOut} className="btn btn-ghost">
@@ -38,9 +37,11 @@ const Navbar = () => {
 					</li>
 
 					<li>
-						{user && <Link to="/dashboard/selectclasses">User Dashboard</Link>}
+						{!Admin && !instructor && user && (
+							<Link to="/dashboard/selectclasses">User Dashboard</Link>
+						)}
 						{Admin && <Link to="/dashboard/manageClass">Admin Dashboard</Link>}
-						{Instructor && (
+						{instructor && (
 							<Link to="/dashboard/Addclasses">Instructor Dashboard</Link>
 						)}
 					</li>

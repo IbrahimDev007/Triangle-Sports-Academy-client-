@@ -5,14 +5,14 @@ import useInstructorHook from "../hook/useInstractorHook";
 
 const InstructorRoute = ({ children }) => {
 	const { user, loading } = useAuthHook();
-	const [Instructor, isinstructorLoading] = useInstructorHook();
+	const [instructor, isinstructorLoading] = useInstructorHook();
 	const location = useLocation();
 
 	if (loading || isinstructorLoading) {
 		return <progress className="progress w-56"></progress>;
 	}
 
-	if (user && Instructor) {
+	if (user && instructor) {
 		return children;
 	}
 	return <Navigate to="/" state={{ from: location }} replace></Navigate>;

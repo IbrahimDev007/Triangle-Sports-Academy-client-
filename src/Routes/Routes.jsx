@@ -21,15 +21,15 @@ const router = createBrowserRouter([
 		errorElement: <ErrorPage />,
 		children: [
 			{
-				path: "/classes",
+				path: "classes",
 				element: <classes />,
 			},
 			{
-				path: "/login",
+				path: "login",
 				element: <Login />,
 			},
 			{
-				path: "/signup",
+				path: "signup",
 				element: <Register />,
 			},
 		],
@@ -44,20 +44,20 @@ const router = createBrowserRouter([
 		errorElement: <ErrorPage />,
 		children: [
 			{
-				path: "/selectclasses",
+				path: "selectclasses",
 				element: <SelectClasses />,
 			},
 			{
-				path: "/enroll",
+				path: "enroll",
 				element: <EnrollClasses />,
 			},
 			{
-				path: "/allpayment",
+				path: "allpayment",
 				element: <AllPayment />,
 			},
 			// instructor route
 			{
-				path: "/myclasses",
+				path: "myclasses",
 				element: (
 					<InstructorRoute>
 						<Myclasses></Myclasses>
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
 				),
 			},
 			{
-				path: "/addclasses",
+				path: "addclasses",
 				element: (
 					<InstructorRoute>
 						<AddClasses></AddClasses>
@@ -75,7 +75,7 @@ const router = createBrowserRouter([
 
 			//admin route
 			{
-				path: "/manageUser",
+				path: "manageUser",
 				element: (
 					<AdminRoute>
 						<ManageUser></ManageUser>
@@ -83,7 +83,7 @@ const router = createBrowserRouter([
 				),
 			},
 			{
-				path: "/manageClass",
+				path: "manageClass",
 				element: (
 					<AdminRoute>
 						<Myclasses></Myclasses>

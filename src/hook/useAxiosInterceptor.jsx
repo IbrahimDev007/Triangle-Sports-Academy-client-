@@ -26,7 +26,7 @@ const useAxiosInterceptor = () => {
 		// Add a response interceptor
 		instanceSecure.interceptors.response.use(
 			(response) => {
-				response;
+				return response;
 			},
 			async (error) => {
 				// Handle 401 Unauthorized error

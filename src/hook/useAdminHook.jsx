@@ -14,6 +14,7 @@ const useAdminHook = () => {
 			return res.data.admin;
 		},
 	});
+	console.log(Admin);
 	return [Admin, isAdminLoading];
 };
 export default useAdminHook;
