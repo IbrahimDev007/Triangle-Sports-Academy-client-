@@ -1,7 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import Banner from "../../components/Banner/Banner";
-import Headroom from "react-headroom";
 
 const Classes = () => {
 	const banner = {
