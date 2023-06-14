@@ -46,20 +46,17 @@ const ManageClasses = () => {
 								<td>class.name</td>
 								{/* <td className="text-end">${class.price}</td> */}
 								<td className="text-end">class.instractor</td>
+								<td className="text-end">class.email</td>
 								<td className="text-end">class.seats</td>
 								<td className="text-end">class.price</td>
 								<td className="text-end">class.status</td>
 
 								<td>
-									<td className="text-end btn-ghost" onClick={""}>
-										Approved
-									</td>
-									<td className="text-end btn-ghost" onClick={""}>
-										Denay
-									</td>
-									<td className="text-end btn-ghost" onClick={""}>
-										Feedback
-									</td>
+									<ul className="flex flex-col">
+										<li className=" btn btn-ghost  btn-sm">Approved</li>
+										<li className="btn btn-ghost btn-sm">Denay</li>
+										<li className=" btn btn-ghost btn-sm">Feedback</li>
+									</ul>
 								</td>
 							</tr>
 							{/* )) */}

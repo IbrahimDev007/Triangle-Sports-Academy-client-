@@ -6,6 +6,7 @@ import EnrollClasses from "../Pages/EnrollClases/EnrollClasses";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Login from "../Pages/Login/Login";
 import ManageUser from "../Pages/ManageUser/ManageUser";
+import ManageClasses from "../Pages/MangeClasses/ManageClasses";
 import Myclasses from "../Pages/Myclasses/Myclasses";
 import AllPayment from "../Pages/PaymentHistory/AllPayment";
 import SelectClasses from "../Pages/SelectClasses/SelectClasses";
@@ -86,7 +87,7 @@ const router = createBrowserRouter([
 				path: "manageClass",
 				element: (
 					<AdminRoute>
-						<Myclasses></Myclasses>
+						<ManageClasses />
 					</AdminRoute>
 				),
 			},
