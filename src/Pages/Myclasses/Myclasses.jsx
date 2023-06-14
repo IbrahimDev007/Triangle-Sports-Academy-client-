@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
-import UpdateModale from "../../components/UpdateModale";
+import UpdateModale from "../../components/UpdateModal/UpdateModale";
 
 const Myclasses = () => {
 	const onSubmit = (data) => {
