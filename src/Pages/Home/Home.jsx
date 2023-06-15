@@ -76,10 +76,10 @@ const Home = () => {
 					{" "}
 					Popular Classes
 				</h3>
-				<div className=" grid grid-cols-3">
+				<div className=" grid grid-cols-3 gap-4">
 					{classes.map((cls) => (
 						<div
-							className="card card-compact w-96 bg-base-100 shadow-xl"
+							className="card card-compact w-96  gap-4 bg-base-100 shadow-xl"
 							key={cls._id}
 						>
 							<figure>
@@ -102,23 +102,32 @@ const Home = () => {
 				</div>
 			</div>
 			<div className="flex flex-col justify-center">
-				<h3 className="my-5 py-12 px-4 bg-warning rounded-2xl flex justify-center text-3xl">
+				<h3 className="my-5 py-12 px-4 bg-warning rounded-2xl text-center text-3xl">
 					{" "}
 					Popular Instructor
 				</h3>
-				<div className=" grid grid-col-3">
-					<div className="card w-44 bg-base-100 shadow-xl  hover:opacity-70">
-						<figure>
-							<img
-								src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tJTIwcGVyc29ufGVufDB8fDB8fHww&w=1000&q=80"
-								alt="Shoes"
-							/>
-						</figure>
-						<div className="card-body">
-							<h2 className="card-title">Shoes!</h2>
-							<p>If a dog chews shoes whose shoes does he choose?</p>
+				<div className=" grid grid-cols-3">
+					{instructors.map((ins) => (
+						<div
+							className="card w-48 gap-4 bg-base-100 shadow-xl  hover:opacity-70"
+							key={ins._id}
+						>
+							<figure>
+								<img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tJTIwcGVyc29ufGVufDB8fDB8fHww&w=1000&q=80" />
+							</figure>
+							<div className="card-body">
+								<h2 className="card-title">{ins.name}</h2>
+								<p>
+									<span className="font-semibold text-md">Email:</span>
+									{ins.email}
+								</p>
+								<p>
+									<span className="font-semibold text-md">student:</span>
+									{ins.students}
+								</p>
+							</div>
 						</div>
-					</div>
+					))}
 				</div>
 			</div>
 		</div>
