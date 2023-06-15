@@ -3,7 +3,7 @@ import axios from "axios";
 
 const useClasses = () => {
 	const {
-		data: classes = [],
+		data: stClasses = [],
 		isLoading: loading,
 		refetch,
 	} = useQuery({
@@ -14,7 +14,7 @@ const useClasses = () => {
 		},
 	});
 
-	return [classes, loading, refetch];
+	return [stClasses, loading, refetch];
 };
 
 export default useClasses;
