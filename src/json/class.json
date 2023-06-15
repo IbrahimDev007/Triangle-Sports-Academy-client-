@@ -1,0 +1,82 @@
+[
+	{
+		"name": "Yoga Class",
+		"image": "yoga-class.jpg",
+		"instructor": "John Doe",
+		"instructorEmail": "john@gmail.com",
+		"availableSeats": 10,
+		"price": 15,
+		"status": "pending",
+		"feedback": null
+	},
+	{
+		"name": "Pilates Class",
+		"image": "pilates-class.jpg",
+		"instructor": "Jane Smith",
+		"instructorEmail": "jane@gmail.com",
+		"availableSeats": 8,
+		"price": 20,
+		"status": "denied",
+		"feedback": "Your teaching style needs improvement."
+	},
+	{
+		"name": "Aerobics Class",
+		"image": "aerobics-class.jpg",
+		"instructor": "Mark Johnson",
+		"instructorEmail": "mark@gmail.com",
+		"availableSeats": 15,
+		"price": 12,
+		"status": "pending",
+		"feedback": null
+	},
+	{
+		"name": "Zumba Class",
+		"image": "zumba-class.jpg",
+		"instructor": "Amy Davis",
+		"instructorEmail": "amy@gmail.com",
+		"availableSeats": 12,
+		"price": 18,
+		"status": "pending",
+		"feedback": null
+	},
+	{
+		"name": "CrossFit Class",
+		"image": "crossfit-class.jpg",
+		"instructor": "Daniel Wilson",
+		"instructorEmail": "daniel@gmail.com",
+		"availableSeats": 20,
+		"price": 25,
+		"status": "denied",
+		"feedback": "The class schedule is not suitable for working professionals."
+	},
+	{
+		"name": "Kickboxing Class",
+		"image": "kickboxing-class.jpg",
+		"instructor": "Emma Adams",
+		"instructorEmail": "emma@gmail.com",
+		"availableSeats": 10,
+		"price": 22,
+		"status": "pending",
+		"feedback": null
+	},
+	{
+		"name": "Spin Class",
+		"image": "spin-class.jpg",
+		"instructor": "Ryan Thompson",
+		"instructorEmail": "ryan@gmail.com",
+		"availableSeats": 8,
+		"price": 17,
+		"status": "pending",
+		"feedback": null
+	},
+	{
+		"name": "Boxing Class",
+		"image": "boxing-class.jpg",
+		"instructor": "Mike Johnson",
+		"instructorEmail": "mike@gmail.com",
+		"availableSeats": 10,
+		"price": 20,
+		"status": "pending",
+		"feedback": null
+	}
+]
