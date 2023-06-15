@@ -7,9 +7,10 @@ import axios from "axios";
 const SelectClasses = () => {
 	const [selected, refetch] = useSelected();
 	console.log(selected);
-	// const total = selected.reduce(
-	// 	(sum, studentClass) => studentClass.price + sum
-	// );
+	const total = selected.reduce(
+		(sum, studentClass) => studentClass.price + sum,
+		0
+	);
 
 	const handleDelete = (studentClass) => {
 		Swal.fire({
@@ -38,11 +39,11 @@ const SelectClasses = () => {
 			{" "}
 			<div className="w-full">
 				<Helmet>
-					<title>triangle Sports Academe | My selected</title>
+					<title>triangle Sports Academe | My selected </title>
 				</Helmet>
 				<div className="uppercase font-semibold h-[60px] flex justify-evenly items-center">
-					<h3 className="text-3xl">Total classes: {selected.length}</h3>
-					<h3 className="text-3xl">Total Price: total</h3>
+					<h3 className="text-3xl">Total classes: {selected.length} </h3>
+					<h3 className="text-3xl">Total Price: {total} $</h3>
 					<Link to="/dashboard/payment">
 						<button className="btn btn-warning btn-sm">PAY</button>
 					</Link>
