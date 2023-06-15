@@ -1,15 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuthHook from "./useAuthHook";
-import useInstructorHook from "./useInstractorHook";
+import useAxiosInterceptor from "./useAxiosInterceptor";
+// import useInstructorHook from "./useInstractorHook";
 const useSelected = () => {
 	const { user, loading } = useAuthHook();
-	const [instanceSecure] = useInstructorHook();
+	const [instanceSecure] = useAxiosInterceptor();
 	const { refetch, data: selected = [] } = useQuery({
 		queryKey: ["selected", user?.email],
 		enabled: !loading,
 		queryFn: async () => {
 			const res = await instanceSecure(`/selecteds?email=${user?.email}`);
-			console.log("res from axios", res);
+			console.log(res.data);
 			return res.data;
 		},
 	});

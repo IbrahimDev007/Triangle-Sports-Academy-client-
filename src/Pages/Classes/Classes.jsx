@@ -1,19 +1,68 @@
+import axios from "axios";
 import React from "react";
 import { Helmet } from "react-helmet-async";
+import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import Banner from "../../components/Banner/Banner";
 import useAdminHook from "../../hook/useAdminHook";
+import useAuthHook from "../../hook/useAuthHook";
 import useClasses from "../../hook/useClasses";
 import useInstructorHook from "../../hook/useInstractorHook";
+import useSelected from "../../hook/useSelected";
 const Classes = () => {
 	const [stClasses] = useClasses();
 	const [Admin] = useAdminHook();
 	const [instructor] = useInstructorHook();
+	const [, refetch] = useSelected();
+	const navigate = useNavigate();
+	const location = useLocation();
+	const { user } = useAuthHook();
+	const handleAddToBooked = (item) => {
+		const { _id, price, image, name } = item;
+		if (user && user.email) {
+			const bookedItem = {
+				bookedId: _id,
+				name,
+				image,
+				price,
+				email: user.email,
+				status: "selected",
+			};
+			axios.post("http://localhost:3000/selecteds", bookedItem).then((res) => {
+				if (res.data.insertedId) {
+					refetch(); //
+					Swal.fire({
+						position: "top-end",
+						icon: "success",
+						title: "class added on the cart.",
+						showConfirmButton: false,
+						timer: 1500,
+					});
+				}
+			});
+		} else {
+			Swal.fire({
+				title: "Please login to order the class",
+				icon: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Login now!",
+			}).then((result) => {
+				if (result.isConfirmed) {
+					navigate("/login", { state: { from: location } });
+				}
+			});
+		}
+	};
 
 	const banner = {
 		name: "Classes",
 		discriptiion:
 			"Experience the thrill of our exhilarating classes! Join us for engaging and action-packed sessions led by expert instructors. Whether you're a beginner or an experienced athlete, our classes cater to all skill levels. Discover new skills, improve your technique, and have fun in a supportive and energetic atmosphere. Don't miss out on the opportunity to elevate your game and achieve your fitness goals. Enroll today!",
 	};
+
+	// console.log(selected);
 	return (
 		<>
 			<Helmet>Triangle Acdamie || Classes</Helmet>
@@ -52,6 +101,7 @@ const Classes = () => {
 										instructor &&
 										"btn-disabled"
 									} btn-accent`}
+									onClick={() => handleAddToBooked(cls)}
 								>
 									Select
 								</button>
