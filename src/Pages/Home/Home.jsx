@@ -1,24 +1,26 @@
-import React, { useRef } from "react";
+// import React, { useRef } from "react";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-// import required modules
-import { Autoplay, Pagination, Navigation } from "swiper";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// // Import Swiper styles
+// import "swiper/css";
+// import "swiper/css/pagination";
+// import "swiper/css/navigation";
+// // import required modules
+// import { Autoplay, Pagination, Navigation } from "swiper";
+// //import custom style
+// import "./swiperstyle.css";
 
 const Home = () => {
-	const progressCircle = useRef(null);
-	const progressContent = useRef(null);
-	const onAutoplayTimeLeft = (s, time, progress) => {
-		progressCircle.current.style.setProperty("--progress", 1 - progress);
-		progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
-	};
+	// const progressCircle = useRef(null);
+	// const progressContent = useRef(null);
+	// const onAutoplayTimeLeft = (s, time, progress) => {
+	// 	progressCircle.current.style.setProperty("--progress", 1 - progress);
+	// 	progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
+	// };
 
 	return (
 		<div className="px-4 min-w-[80vw]  mx-auto">
-			<div className=" min-w-max max-h-[50vh]">
+			{/* <div className=" max-w-[80vw] max-h-[30vh] p-4 mx-auto ">
 				<Swiper
 					spaceBetween={30}
 					centeredSlides={true}
@@ -32,19 +34,19 @@ const Home = () => {
 					navigation={true}
 					modules={[Autoplay, Pagination, Navigation]}
 					onAutoplayTimeLeft={onAutoplayTimeLeft}
-					className="myswiper"
+					// className="mySwiper"
 				>
 					<SwiperSlide>
 						<img src="https://plus.unsplash.com/premium_photo-1685286321787-c71422d4e827?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFza2V0YmFsbCUyMGdhbWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
 					</SwiperSlide>
 					<SwiperSlide>
-						<img src="https://plus.unsplash.com/premium_photo-1685286321787-c71422d4e827?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFza2V0YmFsbCUyMGdhbWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
+						<img src="https://images.unsplash.com/photo-1616353352910-15d970ac020b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGJhc2tldGJhbGwlMjBnYW1lfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" />
 					</SwiperSlide>
 					<SwiperSlide>
-						<img src="https://plus.unsplash.com/premium_photo-1685286321787-c71422d4e827?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFza2V0YmFsbCUyMGdhbWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
+						<img src="https://images.unsplash.com/photo-1583040989829-f668e2495ae1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmFza2V0YmFsbCUyMGdhbWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
 					</SwiperSlide>
 					<SwiperSlide>
-						<img src="https://plus.unsplash.com/premium_photo-1685286321787-c71422d4e827?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFza2V0YmFsbCUyMGdhbWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
+						<img src="https://images.unsplash.com/photo-1519766304817-4f37bda74a26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmFza2V0YmFsbCUyMGdhbWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
 					</SwiperSlide>
 					<div className="autoplay-progress" slot="container-end">
 						<svg viewBox="0 0 48 48" ref={progressCircle}>
@@ -53,7 +55,7 @@ const Home = () => {
 						<span ref={progressContent}></span>
 					</div>
 				</Swiper>
-			</div>
+			</div> */}
 			<div className="flex flex-col justify-center">
 				<h3 className="my-5 py-12 px-4 bg-success rounded-2xl flex justify-center text-3xl">
 					{" "}

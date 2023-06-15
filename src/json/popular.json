@@ -1,0 +1,86 @@
+[
+	{
+		"title": "Aerobics Class",
+		"instructor": "Mark Johnson",
+		"image": "aerobics-class.jpg",
+		"students": 35,
+		"popular": "class"
+	},
+	{
+		"title": "Zumba Class",
+		"instructor": "Amy Davis",
+		"image": "zumba-class.jpg",
+		"students": 55,
+		"popular": "class"
+	},
+	{
+		"title": "CrossFit Class",
+		"instructor": "Daniel Wilson",
+		"image": "crossfit-class.jpg",
+		"students": 60,
+		"popular": "class"
+	},
+	{
+		"title": "Kickboxing Class",
+		"instructor": "Emma Adams",
+		"image": "kickboxing-class.jpg",
+		"students": 45,
+		"popular": "class"
+	},
+	{
+		"title": "Spin Class",
+		"instructor": "Ryan Thompson",
+		"image": "spin-class.jpg",
+		"students": 30,
+		"popular": "class"
+	},
+	{
+		"title": "Pilates Class",
+		"instructor": "Olivia Martinez",
+		"image": "pilates-class.jpg",
+		"students": 50,
+		"popular": "class"
+	},
+	{
+		"name": "John Doe",
+		"image": "john-doe.jpg",
+		"students": 200,
+		"popular": "instructor",
+		"email": "john@gmail.com"
+	},
+	{
+		"name": "Jane Smith",
+		"image": "jane-smith.jpg",
+		"students": 150,
+		"popular": "instructor",
+		"email": "jane@gmail.com"
+	},
+	{
+		"name": "Mike Johnson",
+		"image": "mike-johnson.jpg",
+		"students": 180,
+		"popular": "instructor",
+		"email": "mike@gmail.com"
+	},
+	{
+		"name": "Sarah Davis",
+		"image": "sarah-davis.jpg",
+		"students": 120,
+		"popular": "instructor",
+		"email": "sarah@gmail.com"
+	},
+	{
+		"name": "David Wilson",
+		"image": "david-wilson.jpg",
+		"students": 250,
+		"popular": "instructor",
+		"email": "david@gmail.com"
+	},
+	{
+		"name": "Emily Adams",
+		"image": "emily-adams.jpg",
+		"students": 100,
+		"popular": "instructor",
+		"email": "emily@gmail.com"
+	}
+]
