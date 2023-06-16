@@ -17,6 +17,7 @@ const Classes = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const { user } = useAuthHook();
+
 	const filterClasses = stClasses.filter((cls) => cls.status === "approved");
 
 	const handleAddToBooked = (item) => {
