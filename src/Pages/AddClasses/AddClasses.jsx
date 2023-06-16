@@ -1,11 +1,17 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
+import useAxiosInterceptor from "../../hook/useAxiosInterceptor";
 
 const AddClasses = () => {
-	const { register, handleSubmit } = useForm();
+	const [instanceSecure] = useAxiosInterceptor();
+	const { register, handleSubmit, reset } = useForm();
+
 	const onSubmit = (data) => {
-		console.log(data);
+		instanceSecure.post("/classes/", data).then((res) => {
+			console.log(res.data);
+			reset();
+		});
 	};
 
 	return (

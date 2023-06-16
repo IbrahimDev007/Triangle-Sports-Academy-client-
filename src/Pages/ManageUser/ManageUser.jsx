@@ -1,16 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
-import useClassses from "../../hook/useClasses";
+// import useClassses from "../../hook/useClasses";
 import useAxiosInterceptor from "../../hook/useAxiosInterceptor";
+import axios from "axios";
 const ManageUser = () => {
 	const [instanceSecure] = useAxiosInterceptor();
-	const [, , refetch] = useClassses();
+	// const [, , refetch] = useClassses();
 
 	const { data: user = [], refetch: userRefetch } = useQuery({
 		queryKey: ["user"],
 		queryFn: async () => {
-			const res = await instanceSecure("http://localhost:3000/users");
+			const res = await instanceSecure("/users");
 			return res.data;
 		},
 	});
@@ -35,7 +36,7 @@ const ManageUser = () => {
 		}).then((result) => {
 			if (result.isConfirmed) {
 				instanceSecure
-					.delete(`http://localhost:3000/users/${user._id}`)
+					.delete(`/users/${user._id}`)
 					.then((res) => {
 						if (res.data.deletedCount > 0) {
 							userRefetch();
@@ -84,28 +85,30 @@ const ManageUser = () => {
 									<td>{user.name}</td>
 									<td className="text-end">{user.role}</td>
 									<td>
-										<td
-											className="text-end btn btn-warning"
-											onClick={() => handleDelete(user)}
-										>
-											Delete
-										</td>
-										<td
-											className={`text-end  btn btn-ghost ${
-												user.role === "admin" && "btn-disabled"
-											}`}
-											onClick={() => handleRole(user, "admin")}
-										>
-											Make admin
-										</td>
-										<td
-											className={`text-end  btn  ${
-												user.role === "instractor" && "btn-disabled"
-											}`}
-											onClick={() => handleRole(user, "instructor")}
-										>
-											Make instractor
-										</td>
+										<ul>
+											<li
+												className="text-end btn btn-warning"
+												onClick={() => handleDelete(user)}
+											>
+												Delete
+											</li>
+											<li
+												className={`text-end  btn btn-ghost ${
+													user.role === "admin" && "btn-disabled"
+												}`}
+												onClick={() => handleRole(user, "admin")}
+											>
+												Make admin
+											</li>
+											<li
+												className={`text-end  btn  ${
+													user.role === "instractor" && "btn-disabled"
+												}`}
+												onClick={() => handleRole(user, "instructor")}
+											>
+												Make instractor
+											</li>
+										</ul>
 									</td>
 								</tr>
 							))}

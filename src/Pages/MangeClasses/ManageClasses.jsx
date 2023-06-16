@@ -1,11 +1,39 @@
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-// import Swal from "sweetalert2";
-// import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+
+// import { useForm } from "react-hook-form";
+import useAxiosInterceptor from "../../hook/useAxiosInterceptor";
+import useClasses from "../../hook/useClasses";
 const ManageClasses = () => {
-	const { register, handleSubmit } = useForm();
-	const onSubmit = (data) => {
-		console.log(data);
+	// const { register, handleSubmit } = useForm();
+	const [stClasses, , refetch] = useClasses();
+	const [instanceSecure] = useAxiosInterceptor();
+	const [DataClass, setDataClass] = useState([]);
+	const handleApproved = (approved, status) => {
+		instanceSecure
+			.patch(`/classes/${approved._id}?status=${status}`)
+			.then((response) => {
+				console.log(response.data);
+				refetch();
+				// Handle success
+			});
+	};
+
+	const handleModale = (data) => {
+		setDataClass(data);
+		window.my_modal_3.showModal();
+	};
+
+	const handleSubmit = (e) => {
+		instanceSecure
+			.patch(`/admin/feedback/${DataClass._id}`, {
+				feedback: e.target.feedback.value,
+			})
+			.then((response) => {
+				console.log(response.data);
+				refetch();
+				// Handle success
+			});
 	};
 	return (
 		<div>
@@ -14,7 +42,6 @@ const ManageClasses = () => {
 				<Helmet>
 					<title>triangle Sports Academe |Manage class</title>
 				</Helmet>
-
 				<div className="overflow-x-auto w-full">
 					<table className="table w-full">
 						{/* head */}
@@ -32,62 +59,69 @@ const ManageClasses = () => {
 							</tr>
 						</thead>
 						<tbody>
-							{/* {classes.map((class, index) => ( */}
-							{/* <tr key={class._id}> */}
-							<tr>
-								<td>{1}</td>
-								<td>
-									<div className="avatar">
-										<div className="mask mask-squircle w-12 h-12">
-											<img
-												// src={class.image}
-												src={""}
-												alt="Avatar Tailwind CSS Component"
-											/>
+							{stClasses.map((stClass, index) => (
+								<tr key={stClass._id}>
+									<td>{index}</td>
+									<td>
+										<div className="avatar">
+											<div className="mask mask-squircle w-12 h-12">
+												<img
+													// src={stClass.image}
+													src={""}
+													alt="Avatar Tailwind CSS Component"
+												/>
+											</div>
 										</div>
-									</div>
-								</td>
-								<td>class.name</td>
-								{/* <td className="text-end">${class.price}</td> */}
-								<td className="text-end">class.instractor</td>
-								<td className="text-end">class.email</td>
-								<td className="text-end">class.seats</td>
-								<td className="text-end">class.price</td>
-								<td className="text-end">class.status</td>
+									</td>
+									<td>{stClass.name}</td>
+									{/* <td className="text-end">${stClass.price}</td> */}
+									<td className="text-end">{stClass.instructor}</td>
+									<td className="text-end">{stClass.instructorEmail}</td>
+									<td className="text-end">{stClass.availableSeats}</td>
+									<td className="text-end">{stClass.price}</td>
+									<td className="text-end">{stClass.status}</td>
 
-								<td>
-									<ul className="flex flex-col">
-										<li className=" btn btn-ghost  btn-sm">Approved</li>
-										<li className="btn btn-ghost btn-sm">Denay</li>
-										<li
-											className=" btn btn-ghost btn-sm"
-											onClick={() => window.my_modal_3.showModal()}
-										>
-											Feedback
-										</li>
-									</ul>
-								</td>
-							</tr>
-							{/* )) */}
-							{/* } */}
+									<td>
+										<ul className="flex flex-col">
+											<li
+												className=" btn btn-ghost  btn-sm"
+												onClick={() => handleApproved(stClass, "approved")}
+											>
+												Approved
+											</li>
+											<li
+												className="btn btn-ghost btn-sm"
+												onClick={() => handleApproved(stClass, "denaied")}
+											>
+												Denay
+											</li>
+											<li
+												className=" btn btn-ghost btn-sm"
+												onClick={() => handleModale(stClass)}
+											>
+												Feedback
+											</li>
+										</ul>
+									</td>
+								</tr>
+							))}
 						</tbody>
 					</table>
 					<dialog id="my_modal_3" className="modal">
-						<form
-							method="dialog"
-							className="modal-box"
-							onSubmit={handleSubmit(onSubmit)}
-						>
+						<form method="dialog" className="modal-box" onSubmit={handleSubmit}>
 							<button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
 								✕
 							</button>
 							<h3 className="font-bold text-lg">Feedback!</h3>
 							<input
+								name="feedback"
 								type="text"
 								placeholder="class"
 								className="input input-bordered"
-								{...register("class", { required: true })}
 							/>
+							<button className="btn btn-accent" type="submit">
+								submit
+							</button>
 						</form>
 					</dialog>
 				</div>
