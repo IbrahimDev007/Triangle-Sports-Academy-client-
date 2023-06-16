@@ -17,6 +17,8 @@ const Classes = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const { user } = useAuthHook();
+	const filterClasses = stClasses.filter((cls) => cls.status === "approved");
+
 	const handleAddToBooked = (item) => {
 		const { _id, price, image, name } = item;
 		if (user && user.email) {
@@ -69,7 +71,7 @@ const Classes = () => {
 			<Banner name={banner.name} discriptiion={banner.discriptiion} />
 
 			<div className="grid grid-cols-3  p-8">
-				{stClasses.map((cls) => (
+				{filterClasses.map((cls) => (
 					<div
 						className={`card card-compact w-96 bg-base-100 shadow-xl ${
 							cls.availableSeats === 0 && "bg-red"

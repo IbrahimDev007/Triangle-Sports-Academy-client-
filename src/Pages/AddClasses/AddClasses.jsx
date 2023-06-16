@@ -1,17 +1,53 @@
-import React from "react";
+// import axios from "axios";
+import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
+import useAuthHook from "../../hook/useAuthHook";
 import useAxiosInterceptor from "../../hook/useAxiosInterceptor";
-
+const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 const AddClasses = () => {
 	const [instanceSecure] = useAxiosInterceptor();
 	const { register, handleSubmit, reset } = useForm();
-
+	const { user } = useAuthHook();
+	const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 	const onSubmit = (data) => {
-		instanceSecure.post("/classes/", data).then((res) => {
-			console.log(res.data);
-			reset();
-		});
+		const formData = new FormData();
+		formData.append("image", data.image[0]);
+		fetch(img_hosting_url, {
+			method: "POST",
+			body: formData,
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				if (res.success) {
+					const imgURL = res.data.display_url;
+					const { name, price, availableSeats } = data;
+					const newItem = {
+						name,
+						price: parseFloat(price),
+						availableSeats,
+						image: imgURL,
+						status: "panding",
+						feedback: "null",
+						instructor: user?.displayName,
+						instructorEmail: user.email,
+					};
+					console.log(newItem);
+					instanceSecure.post("/classes", newItem).then((data) => {
+						console.log("after posting new class item", data.data);
+						if (data.data.insertedId) {
+							reset();
+							Swal.fire({
+								position: "top-end",
+								icon: "success",
+								title: "class added successfully",
+								showConfirmButton: false,
+								timer: 1500,
+							});
+						}
+					});
+				}
+			});
 	};
 
 	return (
@@ -28,7 +64,7 @@ const AddClasses = () => {
 						type="text"
 						placeholder="class"
 						className="input input-bordered"
-						{...register("class", { required: true })}
+						{...register("name", { required: true })}
 					/>
 				</div>
 				<div className="form-control">
@@ -50,7 +86,7 @@ const AddClasses = () => {
 						type="number"
 						placeholder="Seats"
 						className="input input-bordered"
-						{...register("available-seat", { required: true })}
+						{...register("availableSeats", { required: true })}
 					/>
 				</div>
 				<div className="form-control">
