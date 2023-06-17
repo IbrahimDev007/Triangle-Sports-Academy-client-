@@ -4,7 +4,8 @@ import Main from "../Layout/Main";
 import AddClasses from "../Pages/AddClasses/AddClasses";
 import Classes from "../Pages/Classes/Classes";
 import EnrollClasses from "../Pages/EnrollClases/EnrollClasses";
-import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import Error from "../Pages/ErrorPage/ErrorPage";
+
 import Home from "../Pages/Home/Home";
 import Instractor from "../Pages/Instractor/Instractor";
 import Login from "../Pages/Login/Login";
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <Main />,
-		errorElement: <ErrorPage />,
+		errorElement: <Error />,
 		children: [
 			{
 				path: "/",
