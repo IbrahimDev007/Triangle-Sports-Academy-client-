@@ -1,10 +1,10 @@
-import axios, { Axios } from "axios";
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useSpring, animated } from "react-spring";
 import useAuthHook from "../../hook/useAuthHook";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import useAuthHook from "../../Hook/UseAuthHook";
 
 const Register = () => {
 	const {
@@ -14,7 +14,30 @@ const Register = () => {
 		reset,
 	} = useForm();
 	const navigate = useNavigate();
-	const { updateUserProfile, createUser } = useAuthHook();
+	const { updateUserProfile, createUser, googleSignIn } = useAuthHook();
+	const handle_google = () => {
+		googleSignIn().then((result) => {
+			const loggedInUser = result.user;
+			console.log(loggedInUser);
+			const saveUser = {
+				name: loggedInUser.displayName,
+				email: loggedInUser.email,
+				role: "student",
+			};
+			fetch("http://localhost:3000/users", {
+				method: "POST",
+				headers: {
+					"content-type": "application/json",
+				},
+				body: JSON.stringify(saveUser),
+			})
+				.then((res) => res.json())
+				.then(() => {
+					navigate(from, { replace: true });
+				});
+		});
+	};
+
 	const onSubmit = (data) => {
 		createUser(data.email, data.password).then((result) => {
 			const regUser = result.user;
@@ -46,116 +69,127 @@ const Register = () => {
 				.catch((error) => console.log(error));
 		});
 	};
-
-	const illustrationAnimation = useSpring({
-		from: { opacity: 0, transform: "translateX(-100px)" },
-		to: { opacity: 1, transform: "translateX(0)" },
-		config: { duration: 1000 },
-	});
-
 	return (
-		<div className="flex h-screen">
-			<div className="w-1/2 bg-gradient-to-br from-purple-500 to-indigo-500 p-8 flex items-center justify-center">
-				<form
-					className="w-3/4 bg-white shadow-md rounded px-8 pt-6 pb-8"
-					onSubmit={handleSubmit(onSubmit)}
-				>
-					<div className="mb-4">
-						<label
-							className="block text-gray-700 text-sm font-bold mb-2"
-							htmlFor="name"
-						>
-							Name
-						</label>
-						<input
-							className="w-full px-3 py-2 border rounded-md outline-none text-gray-700"
-							type="text"
-							placeholder="Enter your name"
-							{...register("name", { required: true })}
-						/>
-						{errors.name && (
-							<p className="text-red-500 text-xs italic">Name is required</p>
-						)}
-					</div>
-					<div className="mb-4">
-						<label
-							className="block text-gray-700 text-sm font-bold mb-2"
-							htmlFor="photo"
-						>
-							Photo Url
-						</label>
-						<input
-							className="w-full px-3 py-2 border rounded-md outline-none text-gray-700"
-							type="text"
-							placeholder="Enter your photoURL"
-							{...register("photoURL", { required: true })}
-						/>
-						{errors.photoURL && (
-							<p className="text-red-500 text-xs italic">
-								photoURL is required
+		<div>
+			<div>
+				<div className="hero min-h-screen bg-base-200">
+					<div className="hero-content flex-col lg:flex-row-reverse">
+						<div className="text-center lg:text-left">
+							<h1 className="text-5xl font-bold">Registration now!</h1>
+							<p className="py-6">
+								Provident cupiditate voluptatem et in. Quaerat fugiat ut
+								assumenda excepturi exercitationem quasi. In deleniti eaque aut
+								repudiandae et a id nisi.
 							</p>
-						)}
+						</div>
+						<div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+							<form className="card-body" onSubmit={handleSubmit(onSubmit)}>
+								<div className="form-control">
+									<label className="label">
+										<span className="label-text">Name</span>
+									</label>
+									<input
+										type="text"
+										placeholder="name"
+										className="input input-bordered"
+										{...register("name", { required: true })}
+									/>
+									{errors.name && (
+										<p className="text-red-500 text-xs italic">
+											Name is required
+										</p>
+									)}
+								</div>
+								<div className="form-control">
+									<label className="label">
+										<span className="label-text">Image URL</span>
+									</label>
+									<input
+										type="text"
+										placeholder="Image URL"
+										className="input input-bordered"
+										{...register("photoURL", { required: true })}
+									/>
+									{errors.photoURL && (
+										<p className="text-red-500 text-xs italic">
+											photoURL is required
+										</p>
+									)}
+								</div>
+								<div className="form-control">
+									<label className="label">
+										<span className="label-text">Email</span>
+									</label>
+									<input
+										type="text"
+										placeholder="email"
+										className="input input-bordered"
+										{...register("email", { required: true })}
+									/>
+									{errors.email && (
+										<p className="text-red-500 text-xs italic">
+											Email is required
+										</p>
+									)}
+								</div>
+								<div className="form-control">
+									<label className="label">
+										<span className="label-text">Password</span>
+									</label>
+									<input
+										type="text"
+										placeholder="password"
+										className="input input-bordered"
+										{...register("password", {
+											required: true,
+											minLength: 6,
+											maxLength: 20,
+											pattern:
+												/(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+										})}
+									/>
+									{errors.password?.type === "required" && (
+										<p className="text-red-600">Password is required</p>
+									)}
+									{errors.password?.type === "minLength" && (
+										<p className="text-red-600">
+											Password must be 6 characters
+										</p>
+									)}
+									{errors.password?.type === "maxLength" && (
+										<p className="text-red-600">
+											Password must be less than 20 characters
+										</p>
+									)}
+									{errors.password?.type === "pattern" && (
+										<p className="text-red-600">
+											Password must have one Uppercase one lower case, one
+											number and one special character.
+										</p>
+									)}
+								</div>
+								<div className="form-control mt-6 mx-auto">
+									<button className="btn btn-primary">Registration</button>
+								</div>
+							</form>
+							<div className="flex justify-between">
+								<Link
+									to="/login"
+									className=" font-bold text-sm text-indigo-600 hover:text-indigo-800"
+									href="#"
+								>
+									Already have a acount?
+									<span className="text-blue-900">Click here to login.</span>
+								</Link>
+								<div className="mx-auto">
+									<button className="btn  btn-warning" onClick={handle_google}>
+										Google
+									</button>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div className="mb-4">
-						<label
-							className="block text-gray-700 text-sm font-bold mb-2"
-							htmlFor="email"
-						>
-							Email
-						</label>
-						<input
-							className="w-full px-3 py-2 border rounded-md outline-none text-gray-700"
-							type="email"
-							placeholder="Enter your email"
-							{...register("email", { required: true })}
-						/>
-						{errors.email && (
-							<p className="text-red-500 text-xs italic">Email is required</p>
-						)}
-					</div>
-					<div className="mb-4">
-						<label
-							className="block text-gray-700 text-sm font-bold mb-2"
-							htmlFor="password"
-						>
-							Password
-						</label>
-						<input
-							className={`w-full px-3 py-2 border rounded-md outline-none text-gray-700 ${
-								errors.password ? "border-red-500" : ""
-							}`}
-							type="password"
-							placeholder="Enter your password"
-							{...register("password", {
-								required: true,
-								minLength: 6,
-								pattern: /^(?=.*[a-z])(?=.*[A-Z])/,
-							})}
-						/>
-						{errors.password && (
-							<p className="text-red-500 text-xs italic">
-								Password is required and must contain at least 6 characters with
-								at least 1 uppercase and 1 lowercase letter
-							</p>
-						)}
-					</div>
-					<div className="flex items-center justify-between">
-						<button
-							className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-							type="submit"
-						>
-							Register
-						</button>
-					</div>
-				</form>
-			</div>
-			<div className="w-1/2 bg-indigo-100 flex items-center justify-center">
-				<animated.div style={illustrationAnimation}>
-					<img
-						src="https://lottiefiles.com/107800-login-leady"
-						className="w-2/3 h-auto"
-					/>
-				</animated.div>
+				</div>
 			</div>
 		</div>
 	);

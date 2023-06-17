@@ -5,10 +5,9 @@ import AddClasses from "../Pages/AddClasses/AddClasses";
 import Classes from "../Pages/Classes/Classes";
 import EnrollClasses from "../Pages/EnrollClases/EnrollClasses";
 import Error from "../Pages/ErrorPage/ErrorPage";
-
 import Home from "../Pages/Home/Home";
 import Instractor from "../Pages/Instractor/Instractor";
-import Login from "../Pages/Login/Login";
+import LoginForm from "../Pages/Login/Login";
 import ManageUser from "../Pages/ManageUser/ManageUser";
 import ManageClasses from "../Pages/MangeClasses/ManageClasses";
 import Myclasses from "../Pages/Myclasses/Myclasses";
@@ -39,7 +38,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "login",
-				element: <Login />,
+				element: <LoginForm />,
 			},
 			{
 				path: "signup",
