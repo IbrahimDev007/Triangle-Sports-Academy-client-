@@ -8,13 +8,14 @@ const useAdminHook = () => {
 
 	const { data: Admin, isLoading: isAdminLoading } = useQuery({
 		queryKey: ["Admin", user?.email],
-		enabled: !loading,
+		enabled: !!user?.email && !!localStorage.getItem("access-verify-token"),
 		queryFn: async () => {
 			const res = await instanceSecure.get(`/users/admin/${user?.email}`);
+			console.log(res.data);
 			return res.data.admin;
 		},
 	});
-	console.log(Admin);
+
 	return [Admin, isAdminLoading];
 };
 export default useAdminHook;

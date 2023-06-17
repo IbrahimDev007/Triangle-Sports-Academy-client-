@@ -8,10 +8,10 @@ const useInstructorHook = () => {
 
 	const { data: instructor, isLoading: isinstructorLoading } = useQuery({
 		queryKey: ["Instructor", user?.email],
-		enabled: !loading,
+		enabled: !!user?.email && !!localStorage.getItem("access-verify-token"),
 		queryFn: async () => {
 			const res = await instanceSecure.get(`/users/instructor/${user?.email}`);
-
+			console.log(res.data);
 			return res.data.instructor;
 		},
 	});
