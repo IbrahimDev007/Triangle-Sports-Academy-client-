@@ -24,7 +24,7 @@ const Register = () => {
 				email: loggedInUser.email,
 				role: "student",
 			};
-			fetch("http://localhost:3000/users", {
+			fetch("https://sportsacdeme-ibrahimdev007.vercel.app/users", {
 				method: "POST",
 				headers: {
 					"content-type": "application/json",
