@@ -53,7 +53,7 @@ const router = createBrowserRouter([
 				<Dashboard></Dashboard>
 			</PrivateRoute>
 		),
-		errorElement: <ErrorPage />,
+		errorElement: <Error />,
 		children: [
 			{
 				path: "selectclasses",

@@ -3,8 +3,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import useAuthHook from "../../hook/useAuthHook";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
-import useAuthHook from "../../Hook/UseAuthHook";
+import { Link, useNavigate } from "react-router-dom";
+// import useAuthHook from "../../Hook/UseAuthHook";
 
 const Register = () => {
 	const {
