@@ -18,11 +18,12 @@ const Register = () => {
 	const handle_google = () => {
 		googleSignIn().then((result) => {
 			const loggedInUser = result.user;
-			console.log(loggedInUser);
+			console.log(loggedInUser, "Google");
 			const saveUser = {
 				name: loggedInUser.displayName,
 				email: loggedInUser.email,
 				role: "student",
+				image: loggedInUser?.photoURL,
 			};
 			fetch("https://sportsacdeme-ibrahimdev007.vercel.app/users", {
 				method: "POST",
@@ -50,6 +51,7 @@ const Register = () => {
 							name: data.name,
 							email: data.email,
 							role: "student",
+							image: data?.photoURL,
 						})
 						.then((data) => {
 							console.log(data);

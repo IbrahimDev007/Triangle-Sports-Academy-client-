@@ -85,7 +85,7 @@ const Home = () => {
 							key={cls._id}
 						>
 							<figure>
-								<img src="https://plus.unsplash.com/premium_photo-1685286321787-c71422d4e827?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFza2V0YmFsbCUyMGdhbWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
+								<img src={cls.image} />
 							</figure>
 							<div className="card-body">
 								<h2 className="card-title">{cls.title}</h2>
@@ -115,7 +115,7 @@ const Home = () => {
 							key={ins._id}
 						>
 							<figure>
-								<img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tJTIwcGVyc29ufGVufDB8fDB8fHww&w=1000&q=80" />
+								<img src={ins.image} />
 							</figure>
 							<div className="card-body">
 								<h2 className="card-title">{ins.name}</h2>

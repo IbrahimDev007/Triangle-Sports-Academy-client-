@@ -89,7 +89,7 @@ const ManageUser = () => {
 								<th>user</th>
 								<th>user Name</th>
 								<th>role</th>
-								<th>Update role</th>
+								<th className="text-center">Update role</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -100,8 +100,7 @@ const ManageUser = () => {
 										<div className="avatar">
 											<div className="mask mask-squircle w-12 h-12">
 												<img
-													// src={user.image}
-													src={""}
+													src={user?.image}
 													alt="Avatar Tailwind CSS Component"
 												/>
 											</div>
@@ -118,15 +117,15 @@ const ManageUser = () => {
 												Delete
 											</li>
 											<li
-												className={`text-end  btn btn-ghost ${
-													user.role === "admin" && "btn-disabled"
+												className={`text-end  mx-3 btn btn-accent ${
+													user.role === "admin" && "btn-error"
 												}`}
 												onClick={() => handleRole(user, "admin")}
 											>
 												Make admin
 											</li>
 											<li
-												className={`text-end  btn  ${
+												className={`text-end  btn btn-accent  ${
 													user.role === "instractor" && "btn-disabled"
 												}`}
 												onClick={() => handleRole(user, "instructor")}

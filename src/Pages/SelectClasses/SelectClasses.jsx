@@ -70,8 +70,7 @@ const SelectClasses = () => {
 										<div className="avatar">
 											<div className="mask mask-squircle w-12 h-12">
 												<img
-													// src={studentClass.image}
-													src={""}
+													src={studentClass?.image}
 													alt="Avatar Tailwind CSS Component"
 												/>
 											</div>

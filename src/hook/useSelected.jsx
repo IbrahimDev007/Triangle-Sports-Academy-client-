@@ -7,8 +7,12 @@ const useSelected = () => {
 	const [instanceSecure] = useAxiosInterceptor();
 	const { refetch, data: selected = [] } = useQuery({
 		queryKey: ["selected", user?.email],
-		enabled: !loading,
+		enabled: !loading && !!user?.email,
 		queryFn: async () => {
+			if (!user?.email) {
+				return false;
+			}
+
 			const res = await instanceSecure(`/selecteds?email=${user?.email}`);
 			console.log(res.data);
 			return res.data;

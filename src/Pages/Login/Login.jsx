@@ -22,6 +22,7 @@ const LoginForm = () => {
 				name: loggedInUser.displayName,
 				email: loggedInUser.email,
 				role: "student",
+				image: loggedInUser?.photoUrl,
 			};
 			fetch("https://sportsacdeme-ibrahimdev007.vercel.app/users", {
 				method: "POST",

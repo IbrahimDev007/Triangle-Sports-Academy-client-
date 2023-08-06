@@ -31,18 +31,23 @@ const Classes = () => {
 				email: user.email,
 				status: "selected",
 			};
-			axios.post("http://localhost:3000/selecteds", bookedItem).then((res) => {
-				if (res.data.insertedId) {
-					refetch(); //
-					Swal.fire({
-						position: "top-end",
-						icon: "success",
-						title: "class added on the cart.",
-						showConfirmButton: false,
-						timer: 1500,
-					});
-				}
-			});
+			axios
+				.post(
+					"https://sportsacdeme-ibrahimdev007.vercel.app/selecteds",
+					bookedItem
+				)
+				.then((res) => {
+					if (res.data.insertedId) {
+						refetch(); //
+						Swal.fire({
+							position: "top-end",
+							icon: "success",
+							title: "class added on the cart.",
+							showConfirmButton: false,
+							timer: 1500,
+						});
+					}
+				});
 		} else {
 			Swal.fire({
 				title: "Please login to order the class",
@@ -80,7 +85,7 @@ const Classes = () => {
 						key={cls._id}
 					>
 						<figure>
-							<img src="https://plus.unsplash.com/premium_photo-1685286321787-c71422d4e827?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFza2V0YmFsbCUyMGdhbWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
+							<img src={ cls.image} />
 						</figure>
 						<div className="card-body">
 							<h2 className="card-title">{cls.title}</h2>
