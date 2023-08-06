@@ -11,6 +11,7 @@ import LoginForm from "../Pages/Login/Login";
 import ManageUser from "../Pages/ManageUser/ManageUser";
 import ManageClasses from "../Pages/MangeClasses/ManageClasses";
 import Myclasses from "../Pages/Myclasses/Myclasses";
+import Payment from "../Pages/Payment/Payment";
 import AllPayment from "../Pages/PaymentHistory/AllPayment";
 import SelectClasses from "../Pages/SelectClasses/SelectClasses";
 import Register from "../Pages/SignUp/Register";
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
 				<Dashboard></Dashboard>
 			</PrivateRoute>
 		),
-		errorElement: <Error />,
+		// errorElement: <Error />,
 		children: [
 			{
 				path: "selectclasses",
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
 			{
 				path: "enroll",
 				element: <EnrollClasses />,
+			},
+			{
+				path: "payment",
+				element: <Payment />,
 			},
 			{
 				path: "allpayment",
@@ -107,3 +112,6 @@ const router = createBrowserRouter([
 ]);
 
 export default router;
+
+// Server Url  :
+// URL:https://sportsacdeme-ibrahimdev007.vercel.app

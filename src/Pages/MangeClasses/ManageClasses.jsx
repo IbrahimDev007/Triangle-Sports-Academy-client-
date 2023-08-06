@@ -10,10 +10,18 @@ const ManageClasses = () => {
 	const [instanceSecure] = useAxiosInterceptor();
 	const [DataClass, setDataClass] = useState([]);
 	const handleApproved = (approved, status) => {
+		const token = localStorage.getItem("access-verify-token");
+		console.log(token, status, approved._id);
 		instanceSecure
-			.patch(`/classes/${approved._id}?status=${status}`)
+			.patch(
+				`/classes/${approved._id}?status=${status}`,
+				{},
+				{
+					headers: { Authorization: `Bearer ${token}` },
+				}
+			)
 			.then((response) => {
-				console.log(response.data);
+				console.log(response, "response");
 				refetch();
 				// Handle success
 			});
@@ -25,14 +33,27 @@ const ManageClasses = () => {
 	};
 
 	const handleSubmit = (e) => {
+		const token = localStorage.getItem("access-verify-token");
 		instanceSecure
-			.patch(`/admin/feedback/${DataClass._id}`, {
-				feedback: e.target.feedback.value,
-			})
+			.patch(
+				`/admin/feedback/${DataClass._id}`,
+				{
+					feedback: e.target.feedback.value,
+				},
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			)
 			.then((response) => {
 				console.log(response.data);
 				refetch();
 				// Handle success
+			})
+			.catch((error) => {
+				console.error("Error updating feedback:", error);
+				// Handle error
 			});
 	};
 	return (

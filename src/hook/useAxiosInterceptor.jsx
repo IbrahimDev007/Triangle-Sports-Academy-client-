@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const useAxiosInterceptor = () => {
 	const instanceSecure = axios.create({
-		baseURL: "https://sportsacdeme-ibrahimdev007.vercel.app",
+		baseURL: "http://localhost:3000",
 	});
 	const { logOut } = useAuthHook();
 	const navigate = useNavigate();

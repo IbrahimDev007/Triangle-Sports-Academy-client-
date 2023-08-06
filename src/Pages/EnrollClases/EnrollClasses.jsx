@@ -1,7 +1,21 @@
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { Helmet } from "react-helmet-async";
-// import Swal from "sweetalert2";
+import useAuthHook from "../../hook/useAuthHook";
 
 const EnrollClasses = () => {
+	const { user, loading } = useAuthHook();
+	const { data: enroll = [] } = useQuery({
+		queryKey: ["enroll", user?.email],
+		enabled: !loading,
+		queryFn: async () => {
+			const res = await axios(
+				`http://localhost:3000/enroll?email=${user?.email}`
+			);
+			console.log(res.data);
+			return res.data;
+		},
+	});
 	return (
 		<div>
 			{" "}
@@ -16,37 +30,29 @@ const EnrollClasses = () => {
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>class</th>
-								<th>class Name</th>
+
+								<th className="mx-4 text-center">class Name</th>
 								<th>Price</th>
-								<th>Tranjection Id</th>
+								<th>Item Quentity </th>
 							</tr>
 						</thead>
 						<tbody>
-							{/* {enroll.map((studentClass, index) => ( */}
-							{/* <tr key={studentClass._id}> */}
-							<tr>
-								<td>{1}</td>
-								<td>
-									<div className="avatar">
-										<div className="mask mask-squircle w-12 h-12">
-											<img
-												// src={studentClass.image}
-												src={""}
-												alt="Avatar Tailwind CSS Component"
-											/>
-										</div>
-									</div>
-								</td>
-								<td>studentClass.name</td>
-								{/* <td className="text-end">${studentClass.price}</td> */}
-								<td className="text-end">$222</td>
-								<td>
-									<td className="text-end">tranjection Id</td>
-								</td>
-							</tr>
-							{/* )) */}
-							{/* } */}
+							{enroll &&
+								enroll.map((item, index) => (
+									<tr key={item._id}>
+										<td>{index + 1}</td>
+
+										<td className="text-end">
+											{item.itemNames.map((className, index) => (
+												<div className="text-end mx-4" key={index}>
+													{className}
+												</div>
+											))}
+										</td>
+										<td className="text-end">${item.price}</td>
+										<td className="text-end">{item.quantity}</td>
+									</tr>
+								))}
 						</tbody>
 					</table>
 				</div>

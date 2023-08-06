@@ -5,12 +5,19 @@ import useAxiosInterceptor from "./useAxiosInterceptor";
 const useAdminHook = () => {
 	const { user, loading } = useAuthHook();
 	const [instanceSecure] = useAxiosInterceptor();
-
+	const token = localStorage.getItem("access-verify-token");
 	const { data: Admin, isLoading: isAdminLoading } = useQuery({
-		queryKey: ["Admin", user?.email],
+		queryKey: ["Admin", user?.email, token],
 		enabled: !!user?.email && !!localStorage.getItem("access-verify-token"),
 		queryFn: async () => {
-			const res = await instanceSecure.get(`/users/admin/${user?.email}`);
+			if (!user?.email || !token) {
+				return false;
+			}
+			const res = await instanceSecure.get(`/users/admin/${user?.email}`, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
 			console.log(res.data);
 			return res.data.admin;
 		},

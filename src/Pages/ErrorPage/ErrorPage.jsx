@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Error = () => {
 	return (
@@ -13,10 +14,8 @@ const Error = () => {
 							been moved or deleted.
 						</p>
 						<button class="bg-gradient-to-r from-purple-400 to-blue-500 hover:from-pink-500 hover:to-orange-500 text-white font-semibold px-6 py-3 rounded-md mr-6">
-							HOME
-						</button>
-						<button class="bg-gradient-to-r from-red-400 to-red-500 hover:from-red-500 hover:to-red-500 text-white font-semibold px-6 py-3 rounded-md">
-							Contact Us
+							{" "}
+							<Link to="/">Home</Link>
 						</button>
 					</div>
 				</div>

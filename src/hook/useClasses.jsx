@@ -9,9 +9,7 @@ const useClasses = () => {
 	} = useQuery({
 		queryKey: ["classes"],
 		queryFn: async () => {
-			const res = await axios(
-				"https://sportsacdeme-ibrahimdev007.vercel.app/classes"
-			);
+			const res = await axios("http://localhost:3000/classes");
 			return res.data;
 		},
 	});

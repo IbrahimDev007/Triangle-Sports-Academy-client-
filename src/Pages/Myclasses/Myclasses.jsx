@@ -6,18 +6,29 @@ import Swal from "sweetalert2";
 import UpdateModale from "../../components/UpdateModal/UpdateModale";
 import useAuthHook from "../../hook/useAuthHook";
 import useAxiosInterceptor from "../../hook/useAxiosInterceptor";
+import useClasses from "../../hook/useClasses";
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 const Myclasses = () => {
 	const [DataClass, setDataClass] = useState([]);
 	const { user, loading } = useAuthHook();
+	const [, , refetch] = useClasses();
+	console.log("user: ", user.email);
+	const token = localStorage.getItem("access-verify-token");
 	const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 	const [instanceSecure] = useAxiosInterceptor();
-	const { data: myClasses = [] } = useQuery({
+	const { data: myClasses = [], refetch: reload } = useQuery({
 		queryKey: ["myClasses ", user?.email],
 		enabled: !!user?.email && !!localStorage.getItem("access-verify-token"),
 		queryFn: async () => {
-			const res = await instanceSecure.get(`classes/instructor/${user?.email}`);
-			console.log(res.data);
+			const res = await instanceSecure.get(
+				`classes/instructor/${user?.email}`,
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			);
+
 			return res.data;
 		},
 	});
@@ -28,6 +39,7 @@ const Myclasses = () => {
 	};
 	const onSubmit = (data) => {
 		const { _id } = DataClass;
+
 		const formData = new FormData();
 		formData.append("image", data.image[0]);
 		fetch(img_hosting_url, {
@@ -39,17 +51,34 @@ const Myclasses = () => {
 				if (res.success) {
 					const imgURL = res.data.display_url;
 					const { name, price, availableSeats } = data;
+
 					const newItem = {
-						name,
+						name: name,
 						price: parseFloat(price),
-						availableSeats,
+						availableSeats: availableSeats,
 						image: imgURL,
 						status: "panding",
 					};
-					console.log(newItem);
-					instanceSecure.patch(`/classes/${_id}`, newItem).then((data) => {
-						reset();
-					});
+					console.log(newItem, "new item data");
+					const token = localStorage.getItem("access-verify-token");
+					instanceSecure
+						.patch(`/classes/instructor/${_id}`, newItem, {
+							headers: {
+								Authorization: `Bearer ${token}`,
+							},
+						})
+						.then(() => {
+							Swal.fire({
+								position: "top-end",
+								icon: "success",
+								title: "class Updateed successfully",
+								showConfirmButton: false,
+								timer: 1500,
+							});
+							reload();
+							refetch();
+							reset();
+						});
 				}
 			});
 	};

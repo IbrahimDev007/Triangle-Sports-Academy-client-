@@ -22,7 +22,7 @@ const UpdateModale = ({ onSubmit }) => {
 						type="text"
 						placeholder="class"
 						className="input input-bordered"
-						{...register("class", { required: true })}
+						{...register("name", { required: true })}
 					/>
 				</div>
 				<div className="form-control">
@@ -44,7 +44,7 @@ const UpdateModale = ({ onSubmit }) => {
 						type="number"
 						placeholder="Seats"
 						className="input input-bordered"
-						{...register("available-seat", { required: true })}
+						{...register("availableSeats", { required: true })}
 					/>
 				</div>
 				<div className="form-control">
@@ -59,7 +59,7 @@ const UpdateModale = ({ onSubmit }) => {
 					/>
 				</div>
 				<div className="form-control mt-6">
-					<button className="btn btn-primary">Add Class</button>
+					<button className="btn btn-primary">Update Class</button>
 				</div>
 			</form>
 		</div>

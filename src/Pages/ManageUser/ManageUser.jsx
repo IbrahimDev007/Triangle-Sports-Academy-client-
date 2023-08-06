@@ -2,26 +2,46 @@ import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 // import useClassses from "../../hook/useClasses";
-import useAxiosInterceptor from "../../hook/useAxiosInterceptor";
+
 import axios from "axios";
+import useAxiosInterceptor from "../../hook/useAxiosInterceptor";
 const ManageUser = () => {
 	const [instanceSecure] = useAxiosInterceptor();
 	// const [, , refetch] = useClassses();
 
+	const token = localStorage.getItem("access-verify-token");
 	const { data: user = [], refetch: userRefetch } = useQuery({
-		queryKey: ["user"],
+		queryKey: ["user", token],
 		queryFn: async () => {
-			const res = await instanceSecure("/users");
+			if (!token) {
+				return [];
+			}
+			const res = await instanceSecure.get("/users", {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
 			return res.data;
 		},
 	});
 
 	const handleRole = (user, role) => {
-		instanceSecure.patch(`/users/${user._id}?role=${role}`).then((response) => {
-			console.log(response.data);
-			userRefetch();
-			// Handle success
-		});
+		// const token = localStorage.getItem("access-verify-token");
+		instanceSecure
+			.patch(
+				`/users/${user._id}?role=${role}`,
+				{},
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			)
+			.then((response) => {
+				console.log(response.data);
+				userRefetch();
+				// Handle success
+			});
 	};
 
 	const handleDelete = (user) => {
@@ -35,8 +55,13 @@ const ManageUser = () => {
 			confirmButtonText: "Yes, delete it!",
 		}).then((result) => {
 			if (result.isConfirmed) {
+				const token = localStorage.getItem("access-verify-token");
 				instanceSecure
-					.delete(`/users/${user._id}`)
+					.delete(`/users/${user._id}`, {
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
+					})
 					.then((res) => {
 						if (res.data.deletedCount > 0) {
 							userRefetch();
