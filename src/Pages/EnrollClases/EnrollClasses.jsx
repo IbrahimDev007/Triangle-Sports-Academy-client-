@@ -10,7 +10,7 @@ const EnrollClasses = () => {
 		enabled: !loading,
 		queryFn: async () => {
 			const res = await axios(
-				`http://localhost:3000/enroll?email=${user?.email}`
+				`https://sportsacdeme-ibrahimdev007.vercel.app/enroll?email=${user?.email}`
 			);
 			console.log(res.data);
 			return res.data;

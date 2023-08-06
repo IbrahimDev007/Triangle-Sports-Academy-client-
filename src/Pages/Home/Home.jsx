@@ -23,7 +23,9 @@ const Home = () => {
 	const { data: popular = [] } = useQuery({
 		queryKey: ["popular"],
 		queryFn: async () => {
-			const res = await axios("http://localhost:3000/popular");
+			const res = await axios(
+				"https://sportsacdeme-ibrahimdev007.vercel.app/popular"
+			);
 			return res.data;
 		},
 	});

@@ -24,7 +24,7 @@ const Register = () => {
 				email: loggedInUser.email,
 				role: "student",
 			};
-			fetch("http://localhost:3000/users", {
+			fetch("https://sportsacdeme-ibrahimdev007.vercel.app/users", {
 				method: "POST",
 				headers: {
 					"content-type": "application/json",
@@ -46,7 +46,7 @@ const Register = () => {
 			updateUserProfile(data.name, data.photoURL)
 				.then(() => {
 					axios
-						.post("http://localhost:3000/users", {
+						.post("https://sportsacdeme-ibrahimdev007.vercel.app/users", {
 							name: data.name,
 							email: data.email,
 							role: "student",

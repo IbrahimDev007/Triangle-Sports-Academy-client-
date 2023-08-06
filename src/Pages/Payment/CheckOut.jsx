@@ -2,7 +2,6 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect } from "react";
 import { useState } from "react";
 
-// import "../Payment/CheckoutForm.css";
 import useAuthHook from "../../hook/useAuthHook";
 import axios from "axios";
 
@@ -18,7 +17,10 @@ const CheckoutForm = ({ selected, price }) => {
 	useEffect(() => {
 		if (price > 0) {
 			axios
-				.post("http://localhost:3000/create-payment-intent", { price })
+				.post(
+					"https://sportsacdeme-ibrahimdev007.vercel.app/create-payment-intent",
+					{ price }
+				)
 				.then((res) => {
 					console.log(res.data.clientSecret);
 					setClientSecret(res.data.clientSecret);
@@ -82,12 +84,14 @@ const CheckoutForm = ({ selected, price }) => {
 				selectedItems: selected.map((item) => item._id),
 				itemNames: selected.map((item) => item.name),
 			};
-			axios.post("http://localhost:3000/payments", payment).then((res) => {
-				console.log(res.data);
-				if (res.data.result.insertedId) {
-					// display confirm
-				}
-			});
+			axios
+				.post("https://sportsacdeme-ibrahimdev007.vercel.app/payments", payment)
+				.then((res) => {
+					console.log(res.data);
+					if (res.data.result.insertedId) {
+						// display confirm
+					}
+				});
 		}
 	};
 

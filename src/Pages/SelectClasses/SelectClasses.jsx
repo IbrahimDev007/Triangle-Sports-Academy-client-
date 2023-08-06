@@ -24,7 +24,9 @@ const SelectClasses = () => {
 		}).then((result) => {
 			if (result.isConfirmed) {
 				axios
-					.delete(`http://localhost:3000/selecteds/${studentClass._id}`)
+					.delete(
+						`https://sportsacdeme-ibrahimdev007.vercel.app/selecteds/${studentClass._id}`
+					)
 					.then((res) => {
 						if (res.data.deletedCount > 0) {
 							refetch();

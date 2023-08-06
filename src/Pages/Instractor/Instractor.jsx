@@ -13,7 +13,9 @@ const Instractor = () => {
 	const { data: instructor = [] } = useQuery({
 		queryKey: ["instructor"],
 		queryFn: async () => {
-			const res = await axios("http://localhost:3000/instructor");
+			const res = await axios(
+				"https://sportsacdeme-ibrahimdev007.vercel.app/instructor"
+			);
 			return res.data;
 		},
 	});
