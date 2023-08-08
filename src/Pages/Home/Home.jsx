@@ -1,17 +1,22 @@
-import React, { useRef } from "react";
+//import custom style
+import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+
+// import "./styles.css";
+
 // import required modules
-import { Autoplay, Pagination, Navigation } from "swiper";
-//import custom style
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 import "./swiperstyle.css";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { Link } from "react-router-dom";
 const Home = () => {
 	const progressCircle = useRef(null);
 	const progressContent = useRef(null);
@@ -31,10 +36,27 @@ const Home = () => {
 	});
 
 	const img = [
-		"https://plus.unsplash.com/premium_photo-1685286321787-c71422d4e827?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFza2V0YmFsbCUyMGdhbWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
-		"https://images.unsplash.com/photo-1519766304817-4f37bda74a26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmFza2V0YmFsbCUyMGdhbWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
-		"https://images.unsplash.com/photo-1583040989829-f668e2495ae1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmFza2V0YmFsbCUyMGdhbWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
-		"https://images.unsplash.com/photo-1616353352910-15d970ac020b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGJhc2tldGJhbGwlMjBnYW1lfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
+		{
+			img: "https://plus.unsplash.com/premium_photo-1685286321787-c71422d4e827?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFza2V0YmFsbCUyMGdhbWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+			title: "Dynamic:",
+			disc: "A sports academy that offers constantly evolving training programs and adapts to the latest techniques and trends in the sports world.",
+		},
+
+		{
+			img: "https://images.unsplash.com/photo-1519766304817-4f37bda74a26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmFza2V0YmFsbCUyMGdhbWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+			title: "Elite:",
+			disc: "An academy known for its high standards, top-tier coaching staff, and exceptional training methods.",
+		},
+		{
+			img: "https://images.unsplash.com/photo-1583040989829-f668e2495ae1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmFza2V0YmFsbCUyMGdhbWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+			title: "Innovative:",
+			disc: " An academy that pioneers new training methodologies, using cutting-edge technology and creative approaches to enhance athletes' performance.",
+		},
+		{
+			img: "https://images.unsplash.com/photo-1616353352910-15d970ac020b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGJhc2tldGJhbGwlMjBnYW1lfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
+			title: "Comprehensive:",
+			disc: "A place that offers a holistic approach to training, covering all aspects of physical, mental, and tactical development.",
+		},
 	];
 
 	console.log(popular);
@@ -43,7 +65,36 @@ const Home = () => {
 
 	return (
 		<div className="px-4 min-w-[80vw]  mx-auto">
-			<div className=" max-w-[80vw] max-h-[30vh] p-4 mx-auto ">
+			<section>
+				<div className="hero min-h-screen  bg-[url(https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg?size=626&ext=jpg)] bg-cover bg-center bg-no-repeat">
+					<div className="hero-overlay bg-opacity-60"></div>
+					<div className="hero-content text-center text-neutral-content">
+						<div className="max-w-md">
+							<h1 className="mb-5 text-5xl font-bold">
+								Triangle Sports Academy
+							</h1>
+							<p className="mb-5">
+								Introducing the Triangle Sports Academy, where champions are
+								molded through passion and dedication! Our state-of-the-art
+								facility boasts cutting-edge training equipment and expert
+								instructors who are elite athletes in their own right. With a
+								curriculum meticulously designed to cultivate skills,
+								resilience, and teamwork, students excel both on and off the
+								field. Our website serves as a portal to this world of
+								excellence, offering detailed class schedules, instructor
+								profiles, and a seamless registration process. Join us at
+								Triangle Sports Academy, where dreams evolve into victories.
+								Unleash your potential today!
+							</p>
+							<Link to={"/classes"} className="btn btn-primary">
+								See All Classes
+							</Link>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section className="w-12/12 flex justify-center ">
 				<Swiper
 					spaceBetween={30}
 					centeredSlides={true}
@@ -57,13 +108,21 @@ const Home = () => {
 					navigation={true}
 					modules={[Autoplay, Pagination, Navigation]}
 					onAutoplayTimeLeft={onAutoplayTimeLeft}
-					className="block"
+					className="mySwiper  w-full h-48 object-fill my-10"
 				>
-					{/* {img.map((item, index) => (
+					{img.map((item, index) => (
 						<SwiperSlide key={index}>
-							<img src={item} />
+							<img src={item.img} />
+							<div className="">
+								<h2 className="text-orange-500 font-extralight text-3xl">
+									{item.title}
+								</h2>
+								<h3 className="text-orange-500 font-extralight ">
+									{item.disc}
+								</h3>
+							</div>
 						</SwiperSlide>
-					))} */}
+					))}
 
 					<div className="autoplay-progress" slot="container-end">
 						<svg viewBox="0 0 48 48" ref={progressCircle}>
@@ -72,7 +131,8 @@ const Home = () => {
 						<span ref={progressContent}></span>
 					</div>
 				</Swiper>
-			</div>
+			</section>
+
 			<div className="flex flex-col justify-center">
 				<h3 className="my-5 py-12 px-4 bg-success rounded-2xl flex justify-center text-3xl">
 					{" "}
@@ -81,11 +141,11 @@ const Home = () => {
 				<div className=" grid grid-cols-3 gap-4">
 					{classes.map((cls) => (
 						<div
-							className="card card-compact w-96  gap-4 bg-base-100 shadow-xl"
+							className="card card-compact w-96 h-[100%]  gap-4 bg-base-100 shadow-xl"
 							key={cls._id}
 						>
 							<figure>
-								<img src={cls.image} />
+								<img src={cls.image} className="object-cover h-72" />
 							</figure>
 							<div className="card-body">
 								<h2 className="card-title">{cls.title}</h2>
@@ -103,19 +163,19 @@ const Home = () => {
 					))}
 				</div>
 			</div>
-			<div className="flex flex-col justify-center">
-				<h3 className="my-5 py-12 px-4 bg-warning rounded-2xl text-center text-3xl">
+			<div className="flex flex-col justify-center items-center">
+				<h3 className="my-5 py-12 px-4 bg-warning rounded-2xl text-center text-3xl w-full">
 					{" "}
 					Popular Instructor
 				</h3>
-				<div className=" grid grid-cols-3">
+				<div className=" grid grid-cols-3 gap-4">
 					{instructors.map((ins) => (
 						<div
-							className="card w-48 gap-4 bg-base-100 shadow-xl  hover:opacity-70"
+							className="card w-48 gap-4 bg-base-100 shadow-xl  mt-4 hover:opacity-70"
 							key={ins._id}
 						>
 							<figure>
-								<img src={ins.image} />
+								<img src={ins.image} className="object-cover h-72" />
 							</figure>
 							<div className="card-body">
 								<h2 className="card-title">{ins.name}</h2>

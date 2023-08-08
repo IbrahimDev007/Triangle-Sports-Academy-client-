@@ -28,7 +28,11 @@ const Instractor = () => {
 					{instructor.map((ins) => (
 						<div className="card w-48 bg-base-100 shadow-xl" key={ins._id}>
 							<figure>
-								<img src={ins.image} alt="Shoes" />
+								<img
+									src={ins.image}
+									className="object-cover h-72"
+									alt="Shoes"
+								/>
 							</figure>
 							<div className="card-body">
 								<h2 className="card-title">{ins.name}</h2>

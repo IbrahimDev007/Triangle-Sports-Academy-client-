@@ -85,10 +85,10 @@ const Classes = () => {
 						key={cls._id}
 					>
 						<figure>
-							<img src={ cls.image} />
+							<img src={cls.image} className="object-cover h-72" />
 						</figure>
 						<div className="card-body">
-							<h2 className="card-title">{cls.title}</h2>
+							<h2 className="card-title">{cls.name}</h2>
 							<p>
 								<span className="font-semibold text-md">Instructor:</span>
 								{cls.instructor}
