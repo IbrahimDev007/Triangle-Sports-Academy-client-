@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import useAuthHook from "./useAuthHook";
 import useAxiosInterceptor from "./useAxiosInterceptor";
 
 const useAdminHook = () => {
 	const { user, loading } = useAuthHook();
+	// console.log(user?.email, "admin email: ");
 	const [instanceSecure] = useAxiosInterceptor();
 	const token = localStorage.getItem("access-verify-token");
 	const { data: Admin, isLoading: isAdminLoading } = useQuery({
@@ -18,7 +20,7 @@ const useAdminHook = () => {
 					Authorization: `Bearer ${token}`,
 				},
 			});
-			console.log(res.data);
+			console.log(res.data, "admin");
 			return res.data.admin;
 		},
 	});

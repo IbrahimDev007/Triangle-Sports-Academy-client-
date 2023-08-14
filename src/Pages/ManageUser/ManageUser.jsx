@@ -5,9 +5,11 @@ import Swal from "sweetalert2";
 
 import axios from "axios";
 import useAxiosInterceptor from "../../hook/useAxiosInterceptor";
+import useAuthHook from "../../hook/useAuthHook";
 const ManageUser = () => {
 	const [instanceSecure] = useAxiosInterceptor();
 	// const [, , refetch] = useClassses();
+	const { user: currentUser } = useAuthHook();
 
 	const token = localStorage.getItem("access-verify-token");
 	const { data: user = [], refetch: userRefetch } = useQuery({
@@ -111,22 +113,30 @@ const ManageUser = () => {
 									<td>
 										<ul>
 											<li
-												className="text-end btn btn-warning"
+												className={`text-end btn ${
+													(user?.email === currentUser.email &&
+														"btn-disabled") ||
+													"btn-warning"
+												} `}
 												onClick={() => handleDelete(user)}
 											>
 												Delete
 											</li>
 											<li
-												className={`text-end  mx-3 btn btn-accent ${
-													user.role === "admin" && "btn-error"
+												className={`text-end  mx-3 btn  ${
+													(user?.email === currentUser.email &&
+														"btn-disabled") ||
+													(user.role === "admin" && "btn-disabled")
 												}`}
 												onClick={() => handleRole(user, "admin")}
 											>
 												Make admin
 											</li>
 											<li
-												className={`text-end  btn btn-accent  ${
-													user.role === "instractor" && "btn-disabled"
+												className={`text-end  btn ${
+													(user?.email === currentUser.email &&
+														"btn-disabled") ||
+													(user.role === "instractor" && "btn-disabled")
 												}`}
 												onClick={() => handleRole(user, "instructor")}
 											>

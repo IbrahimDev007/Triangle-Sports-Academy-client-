@@ -10,10 +10,10 @@ import useClasses from "../../hook/useClasses";
 import useInstructorHook from "../../hook/useInstractorHook";
 import useSelected from "../../hook/useSelected";
 const Classes = () => {
-	const [stClasses] = useClasses();
+	const [stClasses, , refetch] = useClasses();
 	const [Admin] = useAdminHook();
 	const [instructor] = useInstructorHook();
-	const [, refetch] = useSelected();
+	const [selected, reload] = useSelected();
 	const navigate = useNavigate();
 	const location = useLocation();
 	const { user } = useAuthHook();
@@ -22,45 +22,59 @@ const Classes = () => {
 
 	const handleAddToBooked = (item) => {
 		const { _id, price, image, name } = item;
-		if (user && user.email) {
-			const bookedItem = {
-				bookedId: _id,
-				name,
-				image,
-				price,
-				email: user.email,
-				status: "selected",
-			};
-			axios
-				.post(
-					"https://sportsacdeme-ibrahimdev007.vercel.app/selecteds",
-					bookedItem
-				)
-				.then((res) => {
-					if (res.data.insertedId) {
-						refetch(); //
-						Swal.fire({
-							position: "top-end",
-							icon: "success",
-							title: "class added on the cart.",
-							showConfirmButton: false,
-							timer: 1500,
-						});
+		const isClassAlreadySelected = selected.some(
+			(selectedClass) => selectedClass.bookedId === _id
+		);
+		if (isClassAlreadySelected) {
+			Swal.fire({
+				title: "Class Already Added",
+				text: "You have already added this class to your cart.",
+				icon: "info",
+				showConfirmButton: false,
+				timer: 1500,
+			});
+		} else {
+			if (user && user.email) {
+				const bookedItem = {
+					bookedId: _id,
+					name,
+					image,
+					price,
+					email: user.email,
+					status: "selected",
+				};
+				axios
+					.post(
+						"https://sportsacdeme-ibrahimdev007.vercel.app/selecteds",
+						bookedItem
+					)
+					.then((res) => {
+						if (res.data.insertedId) {
+							refetch();
+							reload();
+							Swal.fire({
+								position: "top-end",
+								icon: "success",
+								title: "class added on the cart.",
+								showConfirmButton: false,
+								timer: 1500,
+							});
+						}
+					});
+			} else {
+				Swal.fire({
+					title: "Please login to order the class",
+					icon: "warning",
+					showCancelButton: true,
+					confirmButtonColor: "#3085d6",
+					cancelButtonColor: "#d33",
+					confirmButtonText: "Login now!",
+				}).then((result) => {
+					if (result.isConfirmed) {
+						navigate("/login", { state: { from: location } });
 					}
 				});
-		} else {
-			Swal.fire({
-				title: "Please login to order the class",
-				icon: "warning",
-				showCancelButton: true,
-				confirmButtonColor: "#3085d6",
-				cancelButtonColor: "#d33",
-				confirmButtonText: "Login now!",
-			}).then((result) => {
-				if (result.isConfirmed) {
-					navigate("/login", { state: { from: location } });
-				}
-			});
+			}
 		}
 	};
 
@@ -104,11 +118,9 @@ const Classes = () => {
 							<div className="card-actions justify-center">
 								<button
 									className={`btn ${
-										cls.availableSeats === 0 &&
-										Admin &&
-										instructor &&
+										(cls.availableSeats === 0 || Admin || instructor) &&
 										"btn-disabled"
-									} btn-accent`}
+									} `}
 									onClick={() => handleAddToBooked(cls)}
 								>
 									Select

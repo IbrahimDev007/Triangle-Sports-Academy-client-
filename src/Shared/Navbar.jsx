@@ -9,6 +9,7 @@ const Navbar = () => {
 	const [Admin] = useAdminHook();
 	const [instructor] = useInstructorHook();
 
+	console.log("navbar user: ", user, user?.photoURL);
 	const handleLogOut = () => {
 		logOut()
 			.then(() => {})
@@ -45,6 +46,8 @@ const Navbar = () => {
 							<Link to="/dashboard/Addclasses">Instructor Dashboard</Link>
 						)}
 					</li>
+
+					<li></li>
 				</>
 			) : (
 				<>
@@ -83,13 +86,22 @@ const Navbar = () => {
 						{nav}
 					</ul>
 				</div>
-				<a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+				<a className="btn btn-ghost normal-case text-xl text-accent-focus">
+					Triangle Sports
+				</a>
 			</div>
 			<div className="navbar-center hidden lg:flex">
 				<ul className="menu menu-horizontal px-1">{nav}</ul>
 			</div>
+
 			<div className="navbar-end">
-				<a className="btn">Button</a>
+				{user && (
+					<label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+						<div className="w-10 rounded-full">
+							<img src={user?.photoURL} />
+						</div>
+					</label>
+				)}
 			</div>
 		</div>
 	);

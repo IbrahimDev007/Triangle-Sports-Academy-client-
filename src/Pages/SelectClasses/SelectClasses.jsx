@@ -3,9 +3,11 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import useSelected from "../../hook/useSelected";
 import axios from "axios";
+import useClasses from "../../hook/useClasses";
 
 const SelectClasses = () => {
-	const [selected, refetch] = useSelected();
+	const [, , refetch] = useClasses();
+	const [selected, reload] = useSelected();
 	console.log(selected);
 	const total = selected.reduce(
 		(sum, studentClass) => studentClass.price + sum,
@@ -30,6 +32,7 @@ const SelectClasses = () => {
 					.then((res) => {
 						if (res.data.deletedCount > 0) {
 							refetch();
+							reload();
 							Swal.fire("Deleted!", "Your file has been deleted.", "success");
 						}
 					});

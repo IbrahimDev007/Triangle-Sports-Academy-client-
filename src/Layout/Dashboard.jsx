@@ -36,6 +36,19 @@ const Dashboard = () => {
 							</li>
 						</>
 					)}
+					{instructor && (
+						<>
+							<li>
+								<NavLink to="/dashboard/addclasses">Add classes</NavLink>
+							</li>
+
+							<li>
+								<NavLink to="/dashboard/myclasses">My Classes</NavLink>
+							</li>
+							<li></li>
+						</>
+					)}
+
 					{!Admin && !instructor && user && (
 						<>
 							<li>
@@ -48,18 +61,6 @@ const Dashboard = () => {
 							</li>
 							<li>
 								<NavLink to="/dashboard/allpayment">Payment History</NavLink>
-							</li>
-							<li></li>
-						</>
-					)}
-					{instructor && (
-						<>
-							<li>
-								<NavLink to="/dashboard/addclasses">Add classes</NavLink>
-							</li>
-
-							<li>
-								<NavLink to="/dashboard/myclasses">My Classes</NavLink>
 							</li>
 							<li></li>
 						</>

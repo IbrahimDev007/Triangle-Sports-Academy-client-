@@ -59,7 +59,6 @@ const Home = () => {
 		},
 	];
 
-	console.log(popular);
 	const instructors = popular.filter((item) => item.popular === "instructor");
 	const classes = popular.filter((item) => item.popular === "class");
 

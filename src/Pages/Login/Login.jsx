@@ -60,12 +60,26 @@ const LoginForm = () => {
 				<div className="hero min-h-screen bg-base-200">
 					<div className="hero-content flex-col lg:flex-row-reverse">
 						<div className="text-center lg:text-left">
-							<h1 className="text-5xl font-bold">Login now!</h1>
-							<p className="py-6">
-								Provident cupiditate voluptatem et in. Quaerat fugiat ut
-								assumenda excepturi exercitationem quasi. In deleniti eaque aut
-								repudiandae et a id nisi.
-							</p>
+							<div className="grid grid-cols-2">
+								<div className="flex items-center flex-col justify-center">
+									<h1 className="text-5xl font-bold my-1 ">Login now!</h1>
+
+									<p className="py-6">
+										Step into excellence with our Sports Academy's immersive
+										training programs. Unlock your potential through expert
+										coaching, cutting-edge facilities, and a supportive
+										community. Access your personalized journey by logging in to
+										our portal, where champions train and dreams thrive. Join us
+										in shaping your athletic success."
+									</p>
+								</div>
+
+								<img
+									src="https://img.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg?size=626&ext=jpg"
+									alt="login"
+									className="object-cover"
+								/>
+							</div>
 						</div>
 						<div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
 							<form className="card-body" onSubmit={handleSubmit(onSubmit)}>
@@ -125,7 +139,7 @@ const LoginForm = () => {
 									<button className="btn btn-primary">Login</button>
 								</div>
 							</form>
-							<div className="flex justify-between">
+							<div className="flex justify-between items-center ml-2">
 								<Link
 									to="/signup"
 									className=" font-bold text-sm text-indigo-600 hover:text-indigo-800"
@@ -134,7 +148,7 @@ const LoginForm = () => {
 									Not registered?
 									<span className="text-blue-900">Click here to register.</span>
 								</Link>
-								<div className="mx-auto">
+								<div className="mx-auto my-4 px-2">
 									<button className="btn  btn-warning" onClick={handle_google}>
 										Google
 									</button>

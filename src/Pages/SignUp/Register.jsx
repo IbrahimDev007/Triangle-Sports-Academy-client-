@@ -77,12 +77,25 @@ const Register = () => {
 				<div className="hero min-h-screen bg-base-200">
 					<div className="hero-content flex-col lg:flex-row-reverse">
 						<div className="text-center lg:text-left">
-							<h1 className="text-5xl font-bold">Registration now!</h1>
-							<p className="py-6">
-								Provident cupiditate voluptatem et in. Quaerat fugiat ut
-								assumenda excepturi exercitationem quasi. In deleniti eaque aut
-								repudiandae et a id nisi.
-							</p>
+							<div className="grid grid-cols-2">
+								<div className="flex items-center flex-col justify-center">
+									<h1 className="text-5xl font-bold my-1">Register now!</h1>
+
+									<p className="py-6">
+										Join the journey to excellence at our cutting-edge sports
+										academy. Elevate your skills, train with elite coaches, and
+										unlock your potential. Don't miss out! Secure your spot
+										today on our registration page and embark on a path to
+										greatness. Your success story begins here.
+									</p>
+								</div>
+
+								<img
+									src="https://img.freepik.com/free-vector/placeholder-concept-illustration_114360-4847.jpg?size=626&ext=jpg"
+									alt="Register"
+									className="object-cover"
+								/>
+							</div>
 						</div>
 						<div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
 							<form className="card-body" onSubmit={handleSubmit(onSubmit)}>
@@ -174,7 +187,7 @@ const Register = () => {
 									<button className="btn btn-primary">Registration</button>
 								</div>
 							</form>
-							<div className="flex justify-between">
+							<div className="flex justify-between items-center ml-2">
 								<Link
 									to="/login"
 									className=" font-bold text-sm text-indigo-600 hover:text-indigo-800"
@@ -183,7 +196,7 @@ const Register = () => {
 									Already have a acount?
 									<span className="text-blue-900">Click here to login.</span>
 								</Link>
-								<div className="mx-auto">
+								<div className="mx-auto my-4 px-2">
 									<button className="btn  btn-warning" onClick={handle_google}>
 										Google
 									</button>
