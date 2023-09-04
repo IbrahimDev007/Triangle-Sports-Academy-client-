@@ -46,7 +46,6 @@ export const Contact = () => {
 
 	return (
 		<div>
-			<h1 className="text-5xl font-bold">Contact Us_</h1>
 			<form
 				className="w-full max-w-md mx-auto p-4 bg-white shadow-md rounded-lg"
 				ref={form}

@@ -18,6 +18,8 @@ import { Link } from "react-router-dom";
 import Review from "./Component/Review/Review";
 import Services from "./Component/Services/Services";
 import { Contact } from "./Component/ContactUs/ContactUs";
+import Latest from "./Component/Latest/Latest";
+import Weekly from "./Component/Weekly/Weekly";
 const Home = () => {
 	const progressCircle = useRef(null);
 	const progressContent = useRef(null);
@@ -93,12 +95,7 @@ const Home = () => {
 					</div>
 				</div>
 			</section>
-
 			<section className=" w-12/12 flex  flex-col justify-center ">
-				<h3 className="my-5 py-12 px-4 bg-success rounded-2xl flex justify-center text-3xl">
-					{" "}
-					Review
-				</h3>
 				<Swiper
 					spaceBetween={30}
 					centeredSlides={true}
@@ -136,30 +133,37 @@ const Home = () => {
 					</div>
 				</Swiper>
 			</section>
-
 			<section className="">
-				<h3 className="my-5 py-12 px-4 bg-success rounded-2xl flex justify-center text-3xl">
+				<h3 className="my-5 py-12 px-4 bg-transparent font-extralight rounded-2xl flex justify-center text-3xl">
 					{" "}
 					Review
 				</h3>
 				<Review />
 			</section>
 			<section className="">
-				<h3 className="my-5 py-12 px-4 bg-success rounded-2xl flex justify-center text-3xl">
+				<h3 className="my-5 py-12 px-4 bg-transparent font-extralight rounded-2xl flex justify-center text-3xl">
 					{" "}
 					Services
 				</h3>
 				<Services />
 			</section>
+
 			<section>
-				<h3 className="my-5 py-12 px-4 bg-success rounded-2xl flex justify-center text-3xl">
+				<h3 className="my-5 py-12 px-4 bg-transparent font-extralight rounded-2xl flex justify-center text-3xl">
 					{" "}
-					Contuct Us
+					Latest
 				</h3>
-				<Contact />
+				<Latest />
+			</section>
+			<section>
+				<h3 className="my-5 py-12 px-4 bg-transparent font-extralight rounded-2xl flex justify-center text-3xl">
+					{" "}
+					Weekly Hot
+				</h3>
+				<Weekly />
 			</section>
 			<section className="flex flex-col justify-center">
-				<h3 className="my-5 py-12 px-4 bg-success rounded-2xl flex justify-center text-3xl">
+				<h3 className="my-5 py-12 px-4 bg-transparent font-extralight rounded-2xl flex justify-center text-3xl">
 					{" "}
 					Popular Classes
 				</h3>
@@ -216,6 +220,13 @@ const Home = () => {
 						</div>
 					))}
 				</div>
+			</section>
+			<section>
+				<h3 className="my-5 py-12 px-4 bg-transparent font-extralight rounded-2xl flex justify-center text-3xl">
+					{" "}
+					Contuct Us
+				</h3>
+				<Contact />
 			</section>
 		</div>
 	);
