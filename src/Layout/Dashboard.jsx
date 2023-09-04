@@ -25,6 +25,22 @@ const Dashboard = () => {
 				<label htmlFor="my-drawer-2" className="drawer-overlay"></label>
 				<ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
 					{/* Sidebar content here */}
+					{!Admin && !instructor && user && (
+						<>
+							<li>
+								<NavLink to="/dashboard/selectclasses">
+									selected classes
+								</NavLink>
+							</li>
+							<li>
+								<NavLink to="/dashboard/enroll">enroll classes</NavLink>
+							</li>
+							<li>
+								<NavLink to="/dashboard/allpayment">Payment History</NavLink>
+							</li>
+							<li></li>
+						</>
+					)}
 
 					{Admin && (
 						<>
@@ -44,23 +60,6 @@ const Dashboard = () => {
 
 							<li>
 								<NavLink to="/dashboard/myclasses">My Classes</NavLink>
-							</li>
-							<li></li>
-						</>
-					)}
-
-					{!Admin && !instructor && user && (
-						<>
-							<li>
-								<NavLink to="/dashboard/selectclasses">
-									selected classes
-								</NavLink>
-							</li>
-							<li>
-								<NavLink to="/dashboard/enroll">enroll classes</NavLink>
-							</li>
-							<li>
-								<NavLink to="/dashboard/allpayment">Payment History</NavLink>
 							</li>
 							<li></li>
 						</>

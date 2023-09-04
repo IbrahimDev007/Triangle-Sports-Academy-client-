@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import useAdminHook from "../hook/useAdminHook";
 import useAuthHook from "../hook/useAuthHook";

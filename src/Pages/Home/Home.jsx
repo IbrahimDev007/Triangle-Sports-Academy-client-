@@ -1,5 +1,5 @@
 //import custom style
-import React, { useRef, useState } from "react";
+import { useRef } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -8,8 +8,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-// import "./styles.css";
-
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
@@ -17,6 +15,9 @@ import "./swiperstyle.css";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Review from "./Component/Review/Review";
+import Services from "./Component/Services/Services";
+import { Contact } from "./Component/ContactUs/ContactUs";
 const Home = () => {
 	const progressCircle = useRef(null);
 	const progressContent = useRef(null);
@@ -93,7 +94,11 @@ const Home = () => {
 				</div>
 			</section>
 
-			<section className="w-12/12 flex justify-center ">
+			<section className=" w-12/12 flex  flex-col justify-center ">
+				<h3 className="my-5 py-12 px-4 bg-success rounded-2xl flex justify-center text-3xl">
+					{" "}
+					Review
+				</h3>
 				<Swiper
 					spaceBetween={30}
 					centeredSlides={true}
@@ -107,7 +112,7 @@ const Home = () => {
 					navigation={true}
 					modules={[Autoplay, Pagination, Navigation]}
 					onAutoplayTimeLeft={onAutoplayTimeLeft}
-					className="mySwiper  w-full h-48 object-fill my-10"
+					className="myswiper w-full h-48 object-fill my-10"
 				>
 					{img.map((item, index) => (
 						<SwiperSlide key={index}>
@@ -132,7 +137,28 @@ const Home = () => {
 				</Swiper>
 			</section>
 
-			<div className="flex flex-col justify-center">
+			<section className="">
+				<h3 className="my-5 py-12 px-4 bg-success rounded-2xl flex justify-center text-3xl">
+					{" "}
+					Review
+				</h3>
+				<Review />
+			</section>
+			<section className="">
+				<h3 className="my-5 py-12 px-4 bg-success rounded-2xl flex justify-center text-3xl">
+					{" "}
+					Services
+				</h3>
+				<Services />
+			</section>
+			<section>
+				<h3 className="my-5 py-12 px-4 bg-success rounded-2xl flex justify-center text-3xl">
+					{" "}
+					Contuct Us
+				</h3>
+				<Contact />
+			</section>
+			<section className="flex flex-col justify-center">
 				<h3 className="my-5 py-12 px-4 bg-success rounded-2xl flex justify-center text-3xl">
 					{" "}
 					Popular Classes
@@ -161,8 +187,8 @@ const Home = () => {
 						</div>
 					))}
 				</div>
-			</div>
-			<div className="flex flex-col justify-center items-center">
+			</section>
+			<section className="flex flex-col justify-center items-center">
 				<h3 className="my-5 py-12 px-4 bg-warning rounded-2xl text-center text-3xl w-full">
 					{" "}
 					Popular Instructor
@@ -190,7 +216,7 @@ const Home = () => {
 						</div>
 					))}
 				</div>
-			</div>
+			</section>
 		</div>
 	);
 };

@@ -118,8 +118,9 @@ const Classes = () => {
 							<div className="card-actions justify-center">
 								<button
 									className={`btn ${
-										(cls.availableSeats === 0 || Admin || instructor) &&
-										"btn-disabled"
+										((cls.availableSeats === 0 || Admin || instructor) &&
+											"btn-disabled") ||
+										"btn-accent"
 									} `}
 									onClick={() => handleAddToBooked(cls)}
 								>
