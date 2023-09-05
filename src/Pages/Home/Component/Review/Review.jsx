@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import { EffectCoverflow, Pagination } from "swiper/modules";
+import { Reviews } from "../../Constant/constant";
 export default function Review() {
 	return (
 		<section className="">
@@ -23,43 +24,23 @@ export default function Review() {
 				modules={[EffectCoverflow, Pagination]}
 				className=""
 			>
-				<SwiperSlide>
-					<div className="  bg-[url(https://swiperjs.com/demos/images/nature-3.jpg)] bg-cover bg-center bg-no-repeat">
-						<div className=" bg-opacity-60">
-							<img
-								src="https://img.freepik.com/free-vector/mysterious-mafia-man-smoking-cigarette_52683-34828.jpg?size=626&ext=jpg"
-								alt=""
-								className="circle border-2 h-10 w-10 "
-							/>
-							<h3 className="text-xl">Review</h3>
-							<p>Ratting:</p>
+				{Reviews.map((rev, i) => {
+					<SwiperSlide key={i}>
+						<div className="  bg-[url(https://swiperjs.com/demos/images/nature-3.jpg)] bg-cover bg-center bg-no-repeat">
+							<div className=" bg-opacity-60">
+								<img
+									src={rev.avatar}
+									alt=""
+									className="rounded-full border-2 h-[5px] w-[5px] "
+								/>
+								<h3 className="text-xl text-warning">{rev.review}</h3>
+								<p className="text-xl text-white">
+									Ratting:<span className="text-error">{rev.rating}</span>
+								</p>
+							</div>
 						</div>
-					</div>
-				</SwiperSlide>
-				<SwiperSlide>
-					<img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-				</SwiperSlide>
-				<SwiperSlide>
-					<img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-				</SwiperSlide>
-				<SwiperSlide>
-					<img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-				</SwiperSlide>
-				<SwiperSlide>
-					<img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-				</SwiperSlide>
-				<SwiperSlide>
-					<img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-				</SwiperSlide>
-				<SwiperSlide>
-					<img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-				</SwiperSlide>
-				<SwiperSlide>
-					<img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-				</SwiperSlide>
-				<SwiperSlide>
-					<img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-				</SwiperSlide>
+					</SwiperSlide>;
+				})}
 			</Swiper>
 		</section>
 	);
