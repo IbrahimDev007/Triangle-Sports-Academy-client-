@@ -24,7 +24,17 @@ export default function Review() {
 				className=""
 			>
 				<SwiperSlide>
-					<img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+					<div className="  bg-[url(https://swiperjs.com/demos/images/nature-3.jpg)] bg-cover bg-center bg-no-repeat">
+						<div className=" bg-opacity-60">
+							<img
+								src="https://img.freepik.com/free-vector/mysterious-mafia-man-smoking-cigarette_52683-34828.jpg?size=626&ext=jpg"
+								alt=""
+								className="circle border-2 h-10 w-10 "
+							/>
+							<h3 className="text-xl">Review</h3>
+							<p>Ratting:</p>
+						</div>
+					</div>
 				</SwiperSlide>
 				<SwiperSlide>
 					<img src="https://swiperjs.com/demos/images/nature-2.jpg" />

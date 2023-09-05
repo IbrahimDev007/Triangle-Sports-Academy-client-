@@ -1,13 +1,6 @@
 const Weekly = () => {
 	return (
 		<div className="2xl:mx-auto 2xl:container 2xl:px-20 xl:px-12 sm:px-6 px-4 py-16">
-			<h1 className="lg:text-4xl text-3xl font-semibold leading-9 text-gray-800">
-				Join Our Blog Community
-			</h1>
-			<p className="md:w-1/2 text-base leading-normal mt-4 sm:pr-10 text-gray-600">
-				If you &apos;re looking for random paragraphs, you&apos;ve come to the
-				right place.
-			</p>
 			<div className="md:flex items-start justify-between mt-12">
 				<div className="md:w-1/2 lg:w-full">
 					<div>
@@ -223,7 +216,6 @@ const Weekly = () => {
 									strokeLinejoin="round"
 								/>
 							</svg>
-							Weekly{" "}
 						</button>
 					</div>
 				</div>
