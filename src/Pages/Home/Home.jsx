@@ -222,7 +222,7 @@ const Home = () => {
 				</div>
 			</section>
 			<section>
-				<h3 className="my-5 py-12 px-4 bg-transparent font-extralight rounded-2xl flex justify-center text-3xl">
+				<h3 className="my-5 py-4 px-4 bg-transparent font-semibold text-2xl  border border-black  border-y-2 border-x-0  border-dashed rounded-2xl flex justify-center ">
 					{" "}
 					Contuct Us
 				</h3>

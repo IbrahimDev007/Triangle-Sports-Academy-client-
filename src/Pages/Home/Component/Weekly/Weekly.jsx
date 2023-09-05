@@ -1,10 +1,10 @@
-import { Hot } from "../../Constant/constant";
+import { Weeklyes } from "../../Constant/constant";
 
 const Weekly = () => {
 	return (
 		<div className="2xl:mx-auto 2xl:container 2xl:px-20 xl:px-12 sm:px-6 px-4 py-16">
 			<div className="md:flex items-start justify-between mt-12">
-				{Hot.map((weekly, idx) => (
+				{Weeklyes.map((weekly, idx) => (
 					<div className=" mx-2 md:w-1/2 lg:w-full" key={idx}>
 						<div>
 							<div className="relative">

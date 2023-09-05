@@ -43,7 +43,7 @@ export const Service = [
         "description": "We tailor our training to your specific needs."
     }
 ];
-export const Hot = [
+export const Weeklyes = [
     {
         "name": "Basketball Training",
         "image": "https://img.freepik.com/free-photo/young-basketball-player-shoot_53876-30148.jpg?size=626&ext=jpg",
@@ -69,7 +69,7 @@ export const Hot = [
         "description": "Become a soccer star with our expert coaching."
     }
 ];
-export const Weekly = [
+export const Hot = [
     {
         "title": "Featured Class of the Week",
         "image": "https://img.freepik.com/free-psd/flat-design-american-football-landing-page_23-2150736465.jpg?size=626&ext=jpg",
@@ -91,7 +91,7 @@ export const Weekly = [
         "link": "instructor_url_1"
     }
 ];
-export const latestBlog = [
+export const News = [
     {
         "date": "September 1, 2023",
         "description": "Learn about the benefits of regular exercise and how it can improve your sports performance. Read more..."
