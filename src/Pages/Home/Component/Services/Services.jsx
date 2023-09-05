@@ -9,9 +9,16 @@ const Services = () => {
 						key={index}
 						className={`${
 							index % 2 === 0 ? "btn--wut" : "btn--wiggle"
-						} w-40 h-40 bg-white shadow-2xl m-2 rounded-full flex items-center p-5`}
+						} w-60 h-60 bg-white shadow-2xl m-2 rounded-full flex  flex-col items-center p-5  justify-between`}
 					>
-						<img src={teck.companyImage} alt={teck.title} />
+						<img
+							src={teck.companyImage}
+							alt={teck.title}
+							className="max-h-32 w-40 "
+						/>
+						<p className="text-error bg-slate-700 px-2 w-36">
+							{teck.description}
+						</p>
 					</span>
 				))}
 			</div>

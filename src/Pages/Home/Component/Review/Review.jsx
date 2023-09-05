@@ -25,21 +25,23 @@ export default function Review() {
 				className=""
 			>
 				{Reviews.map((rev, i) => {
-					<SwiperSlide key={i}>
-						<div className="  bg-[url(https://swiperjs.com/demos/images/nature-3.jpg)] bg-cover bg-center bg-no-repeat">
-							<div className=" bg-opacity-60">
-								<img
-									src={rev.avatar}
-									alt=""
-									className="rounded-full border-2 h-[5px] w-[5px] "
-								/>
-								<h3 className="text-xl text-warning">{rev.review}</h3>
-								<p className="text-xl text-white">
-									Ratting:<span className="text-error">{rev.rating}</span>
-								</p>
+					return (
+						<SwiperSlide key={i}>
+							<div className="  bg-[url(https://swiperjs.com/demos/images/nature-3.jpg)] bg-cover bg-center bg-no-repeat">
+								<div className=" bg-opacity-60">
+									<img
+										src={rev.avatar}
+										alt=""
+										className="rounded-full border-2 h-[5px] w-[5px] "
+									/>
+									<h3 className="text-xl text-warning">{rev.review}</h3>
+									<p className="text-xl text-white">
+										Ratting:<span className="text-error">{rev.rating}</span>
+									</p>
+								</div>
 							</div>
-						</div>
-					</SwiperSlide>;
+						</SwiperSlide>
+					);
 				})}
 			</Swiper>
 		</section>
