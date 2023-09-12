@@ -115,3 +115,6 @@ export default router;
 
 // Server Url  :
 // URL:https://sportsacdeme-ibrahimdev007.vercel.app
+
+//mail:admin@mail.com
+//pass:Admin@5514
