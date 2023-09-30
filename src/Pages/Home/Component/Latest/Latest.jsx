@@ -3,10 +3,10 @@ import { Hot } from "../../Constant/constant";
 
 const Latest = () => {
 	return (
-		<div className="2xl:mx-auto 2xl:container my-10">
+		<div className="xl:mx-auto xl:container my-10">
 			<div className="lg:px-20 md:px-6 px-4 md:py-12 py-8">
 				<div className="flex justify-center">
-					<div className="grid md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8 lg:mt-16 md:mt-12 mt-8 items-center">
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 lg:mt-16 md:mt-12 mt-8 items-center">
 						{Hot.map((hot, idx) => (
 							<div key={idx} className="relative flex flex-wrap">
 								<img

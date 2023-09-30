@@ -16,9 +16,6 @@ const Services = () => {
 							alt={teck.title}
 							className="max-h-32 w-40 "
 						/>
-						<p className="text-error bg-slate-700 px-2 w-36">
-							{teck.description}
-						</p>
 					</span>
 				))}
 			</div>

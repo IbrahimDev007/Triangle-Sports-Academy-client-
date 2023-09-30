@@ -66,9 +66,9 @@ const Home = () => {
 	const classes = popular.filter((item) => item.popular === "class");
 
 	return (
-		<div className="px-4 min-w-[80vw]  mx-auto">
+		<div className="px-4 min-w-full  mx-auto">
 			<section>
-				<div className="hero min-h-screen  bg-[url(https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg?size=626&ext=jpg)] bg-cover bg-center bg-no-repeat">
+				<div className="hero min-h-screen min-w-full bg-[url(https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg?size=626&ext=jpg)] bg-cover bg-center bg-no-repeat">
 					<div className="hero-overlay bg-opacity-60"></div>
 					<div className="hero-content text-center text-neutral-content">
 						<div className="max-w-md">
@@ -164,17 +164,20 @@ const Home = () => {
 			</section>
 			<section className="flex flex-col justify-center">
 				<h3 className="my-5 py-12 px-4 bg-transparent font-extralight rounded-2xl flex justify-center text-3xl">
-					{" "}
 					Popular Classes
 				</h3>
-				<div className=" grid grid-cols-3 gap-4">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 					{classes.map((cls) => (
 						<div
-							className="card card-compact w-96 h-[100%]  gap-4 bg-base-100 shadow-xl"
+							className="card card-compact w-full md:w-96 h-[100%]  gap-4 bg-base-100 shadow-xl"
 							key={cls._id}
 						>
 							<figure>
-								<img src={cls.image} className="object-cover h-72" />
+								<img
+									src={cls.image}
+									className="object-cover h-72"
+									alt={cls.title}
+								/>
 							</figure>
 							<div className="card-body">
 								<h2 className="card-title">{cls.title}</h2>
@@ -183,7 +186,7 @@ const Home = () => {
 									{cls.instructor}
 								</p>
 								<p>
-									<span className="font-semibold text-md">student:</span>
+									<span className="font-semibold text-md">Students:</span>
 									{cls.students}
 								</p>
 								<div className="card-actions justify-end"></div>
@@ -192,19 +195,23 @@ const Home = () => {
 					))}
 				</div>
 			</section>
+
 			<section className="flex flex-col justify-center items-center">
-				<h3 className="my-5 py-12 px-4 bg-warning rounded-2xl text-center text-3xl w-full">
-					{" "}
+				<h3 className="my-5 py-8 sm:py-12 md:py-16 px-4 bg-warning rounded-2xl text-center text-3xl w-full">
 					Popular Instructor
 				</h3>
-				<div className=" grid grid-cols-3 gap-4">
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:lg:xl:grid-cols-3  gap-4">
 					{instructors.map((ins) => (
 						<div
-							className="card w-48 gap-4 bg-base-100 shadow-xl  mt-4 hover:opacity-70"
+							className="card w-full sm:w-72 md:w-80 lg:w-96 xl:w-112 bg-base-100 shadow-xl mt-4 hover:opacity-70"
 							key={ins._id}
 						>
 							<figure>
-								<img src={ins.image} className="object-cover h-72" />
+								<img
+									src={ins.image}
+									className="object-cover w-full h-80"
+									alt={ins.name}
+								/>
 							</figure>
 							<div className="card-body">
 								<h2 className="card-title">{ins.name}</h2>
@@ -213,7 +220,7 @@ const Home = () => {
 									{ins.email}
 								</p>
 								<p>
-									<span className="font-semibold text-md">student:</span>
+									<span className="font-semibold text-md">Students:</span>
 									{ins.students}
 								</p>
 							</div>
@@ -221,6 +228,7 @@ const Home = () => {
 					))}
 				</div>
 			</section>
+
 			<section>
 				<h3 className="my-5 py-4 px-4 bg-transparent font-semibold text-2xl  border border-black  border-y-2 border-x-0  border-dashed rounded-2xl flex justify-center ">
 					{" "}
