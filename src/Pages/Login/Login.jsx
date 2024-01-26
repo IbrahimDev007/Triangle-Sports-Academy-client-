@@ -24,7 +24,7 @@ const LoginForm = () => {
 				role: "student",
 				image: loggedInUser?.photoUrl,
 			};
-			fetch("https://sportsacdeme-ibrahimdev007.vercel.app/users", {
+			fetch("https://triangle-sports.onrender.com/users", {
 				method: "POST",
 				headers: {
 					"content-type": "application/json",
@@ -87,6 +87,7 @@ const LoginForm = () => {
 									<label className="label">
 										<span className="label-text">Email</span>
 									</label>
+									<p className="text-red-500 text-xs italic">admin@mail.com</p>
 									<input
 										type="text"
 										placeholder="email"
@@ -103,6 +104,7 @@ const LoginForm = () => {
 									<label className="label">
 										<span className="label-text">Password</span>
 									</label>
+									<p className="text-red-500 text-xs italic">Admin@5514</p>
 									<input
 										type="text"
 										placeholder="password"

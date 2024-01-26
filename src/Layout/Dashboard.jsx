@@ -27,48 +27,48 @@ const Dashboard = () => {
 					{/* Sidebar content here */}
 					{!Admin && !instructor && user && (
 						<>
-							<li>
-								<NavLink to="/dashboard/selectclasses">
-									selected classes
-								</NavLink>
-							</li>
-							<li>
-								<NavLink to="/dashboard/enroll">enroll classes</NavLink>
-							</li>
-							<li>
-								<NavLink to="/dashboard/allpayment">Payment History</NavLink>
-							</li>
-							<li></li>
+							<NavLink to="/dashboard/selectclasses">
+								<li className="btn btn-primary w-full">selected classes</li>
+							</NavLink>
+
+							<NavLink to="/dashboard/enroll">
+								<li className="btn btn-primary w-full">enroll classes</li>
+							</NavLink>
+
+							<NavLink to="/dashboard/allpayment">
+								<li className="btn btn-primary w-full">Payment History</li>
+							</NavLink>
 						</>
 					)}
 
 					{Admin && (
 						<>
-							<li>
-								<NavLink to="/dashboard/manageClass">Manage Class</NavLink>
-							</li>
-							<li>
-								<NavLink to="/dashboard/manageUser">Manage User</NavLink>
-							</li>
+							<NavLink to="/dashboard/manageClass">
+								<li className="btn btn-primary w-full">Manage Class</li>
+							</NavLink>
+
+							<NavLink to="/dashboard/manageUser">
+								<li className="btn btn-primary w-full">Manage User</li>
+							</NavLink>
 						</>
 					)}
 					{instructor && (
 						<>
-							<li>
-								<NavLink to="/dashboard/addclasses">Add classes</NavLink>
-							</li>
+							<NavLink to="/dashboard/myclasses">
+								<li className="btn btn-primary w-full">My Classes</li>
+							</NavLink>
 
-							<li>
-								<NavLink to="/dashboard/myclasses">My Classes</NavLink>
-							</li>
-							<li></li>
+							<NavLink to="/dashboard/addclasses">
+								<li className="btn btn-primary w-full">Add Classes</li>
+							</NavLink>
 						</>
 					)}
 
 					<div className="divider"></div>
-					<li>
-						<NavLink to="/">Home</NavLink>{" "}
-					</li>
+
+					<NavLink to="/">
+						<li className="btn btn-primary w-full">Home</li>
+					</NavLink>
 				</ul>
 			</div>
 		</div>

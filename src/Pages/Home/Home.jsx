@@ -31,9 +31,7 @@ const Home = () => {
 	const { data: popular = [] } = useQuery({
 		queryKey: ["popular"],
 		queryFn: async () => {
-			const res = await axios(
-				"https://sportsacdeme-ibrahimdev007.vercel.app/popular"
-			);
+			const res = await axios("https://triangle-sports.onrender.com/popular");
 			return res.data;
 		},
 	});

@@ -1,5 +1,4 @@
 import axios from "axios";
-import React from "react";
 import { Helmet } from "react-helmet-async";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -44,10 +43,7 @@ const Classes = () => {
 					status: "selected",
 				};
 				axios
-					.post(
-						"https://sportsacdeme-ibrahimdev007.vercel.app/selecteds",
-						bookedItem
-					)
+					.post("https://triangle-sports.onrender.com/selecteds", bookedItem)
 					.then((res) => {
 						if (res.data.insertedId) {
 							refetch();

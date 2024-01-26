@@ -11,7 +11,7 @@ const AllPayment = () => {
 		enabled: !loading,
 		queryFn: async () => {
 			const res = await axios(
-				`https://sportsacdeme-ibrahimdev007.vercel.app/enroll?email=${user?.email}`
+				`https://triangle-sports.onrender.com/enroll?email=${user?.email}`
 			);
 			console.log(res.data);
 			return res.data;

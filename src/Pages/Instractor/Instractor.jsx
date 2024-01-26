@@ -14,7 +14,7 @@ const Instractor = () => {
 		queryKey: ["instructor"],
 		queryFn: async () => {
 			const res = await axios(
-				"https://sportsacdeme-ibrahimdev007.vercel.app/instructor"
+				"https://triangle-sports.onrender.com/instructor"
 			);
 			return res.data;
 		},

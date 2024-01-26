@@ -25,7 +25,7 @@ const Register = () => {
 				role: "student",
 				image: loggedInUser?.photoURL,
 			};
-			fetch("https://sportsacdeme-ibrahimdev007.vercel.app/users", {
+			fetch("https://triangle-sports.onrender.com/users", {
 				method: "POST",
 				headers: {
 					"content-type": "application/json",
@@ -47,7 +47,7 @@ const Register = () => {
 			updateUserProfile(data.name, data.photoURL)
 				.then(() => {
 					axios
-						.post("https://sportsacdeme-ibrahimdev007.vercel.app/users", {
+						.post("https://triangle-sports.onrender.com/users", {
 							name: data.name,
 							email: data.email,
 							role: "student",

@@ -17,10 +17,9 @@ const CheckoutForm = ({ selected, price }) => {
 	useEffect(() => {
 		if (price > 0) {
 			axios
-				.post(
-					"https://sportsacdeme-ibrahimdev007.vercel.app/create-payment-intent",
-					{ price }
-				)
+				.post("https://triangle-sports.onrender.com/create-payment-intent", {
+					price,
+				})
 				.then((res) => {
 					console.log(res.data.clientSecret);
 					setClientSecret(res.data.clientSecret);
@@ -85,7 +84,7 @@ const CheckoutForm = ({ selected, price }) => {
 				itemNames: selected.map((item) => item.name),
 			};
 			axios
-				.post("https://sportsacdeme-ibrahimdev007.vercel.app/payments", payment)
+				.post("https://triangle-sports.onrender.com/payments", payment)
 				.then((res) => {
 					console.log(res.data);
 					if (res.data.result.insertedId) {

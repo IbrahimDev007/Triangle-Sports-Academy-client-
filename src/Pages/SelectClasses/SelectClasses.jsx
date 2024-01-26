@@ -27,7 +27,7 @@ const SelectClasses = () => {
 			if (result.isConfirmed) {
 				axios
 					.delete(
-						`https://sportsacdeme-ibrahimdev007.vercel.app/selecteds/${studentClass._id}`
+						`https://triangle-sports.onrender.com/selecteds/${studentClass._id}`
 					)
 					.then((res) => {
 						if (res.data.deletedCount > 0) {

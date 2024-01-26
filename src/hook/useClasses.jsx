@@ -9,9 +9,7 @@ const useClasses = () => {
 	} = useQuery({
 		queryKey: ["classes"],
 		queryFn: async () => {
-			const res = await axios(
-				"https://sportsacdeme-ibrahimdev007.vercel.app/classes"
-			);
+			const res = await axios("https://triangle-sports.onrender.com/classes");
 			return res.data;
 		},
 	});

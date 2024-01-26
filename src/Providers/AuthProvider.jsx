@@ -58,7 +58,7 @@ const AuthProvider = ({ children }) => {
 			//	get and set token
 			if (currentUser) {
 				axios
-					.post("https://sportsacdeme-ibrahimdev007.vercel.app/jwt", {
+					.post("https://triangle-sports.onrender.com/jwt", {
 						email: currentUser.email,
 					})
 					.then((data) => {
