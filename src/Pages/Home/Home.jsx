@@ -62,7 +62,7 @@ const Home = () => {
 
 	const instructors = popular.filter((item) => item.popular === "instructor");
 	const classes = popular.filter((item) => item.popular === "class");
-
+	// =================Just Store Main File ++++++++++++=================
 	return (
 		<div className="px-4 min-w-full  mx-auto">
 			<section>
