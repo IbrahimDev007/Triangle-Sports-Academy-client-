@@ -10,15 +10,15 @@ const ManageClasses = () => {
 	const [instanceSecure] = useAxiosInterceptor();
 	const [DataClass, setDataClass] = useState([]);
 	const handleApproved = (approved, status) => {
-		const token = localStorage.getItem("access-verify-token");
-		console.log(token, status, approved._id);
+		// const token = localStorage.getItem("access-verify-token");
+		// console.log(token, status, approved._id);
 		instanceSecure
 			.patch(
 				`/classes/${approved._id}?status=${status}`,
-				{},
-				{
-					headers: { Authorization: `Bearer ${token}` },
-				}
+				{}
+				// {
+				// 	headers: { Authorization: `Bearer ${token}` },
+				// }
 			)
 			.then((response) => {
 				console.log(response, "response");
@@ -33,7 +33,7 @@ const ManageClasses = () => {
 	};
 
 	const handleSubmit = (e) => {
-		const token = localStorage.getItem("access-verify-token");
+		// const token = localStorage.getItem("access-verify-token");
 		instanceSecure
 			.patch(
 				`/admin/feedback/${DataClass._id}`,

@@ -6,16 +6,18 @@ const useInstructorHook = () => {
 	const { user, loading } = useAuthHook();
 	const [instanceSecure] = useAxiosInterceptor();
 	console.log(user?.email, "instructor hook");
-	const token = localStorage.getItem("access-verify-token");
+	// const token = localStorage.getItem("access-verify-token");
 
 	const { data: instructor, isLoading: isinstructorLoading } = useQuery({
-		queryKey: ["Instructor", user?.email, token],
-		enabled:
-			!loading &&
-			!!user?.email &&
-			!!localStorage.getItem("access-verify-token"),
+		//  token
+		queryKey: ["Instructor", user?.email,],
+		// enabled:
+		// 	!loading &&
+		// 	!!user?.email &&
+		// 	!!localStorage.getItem("access-verify-token"),
 		queryFn: async () => {
-			if (!user?.email || !token) {
+			//  || !token
+			if (!user?.email) {
 				return false;
 			}
 			const res = await instanceSecure.get(`/users/instructor/${user?.email}`, {

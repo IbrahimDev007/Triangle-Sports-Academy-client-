@@ -5,15 +5,17 @@ import useAxiosInterceptor from "./useAxiosInterceptor";
 const useSelected = () => {
 	const { user, loading } = useAuthHook();
 	const [instanceSecure] = useAxiosInterceptor();
-	const token = localStorage.getItem("access-verify-token");
+	// const token = localStorage.getItem("access-verify-token");
 	const { refetch: reload, data: selected = [] } = useQuery({
-		queryKey: ["selected", user?.email, token],
-		enabled:
-			!loading &&
-			!!user?.email &&
-			!!localStorage.getItem("access-verify-token"),
+		// token
+		queryKey: ["selected", user?.email, ],
+		// enabled:
+		// 	!loading &&
+		// 	!!user?.email &&
+		// 	!!localStorage.getItem("access-verify-token"),
 		queryFn: async () => {
-			if (!user?.email || !token) {
+			// || !token
+			if (!user?.email ) {
 				return false;
 			}
 			const res = await instanceSecure(`/selecteds?email=${user?.email}`, {

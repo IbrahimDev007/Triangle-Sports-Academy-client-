@@ -11,17 +11,18 @@ const ManageUser = () => {
 	// const [, , refetch] = useClassses();
 	const { user: currentUser } = useAuthHook();
 
-	const token = localStorage.getItem("access-verify-token");
+	// const token = localStorage.getItem("access-verify-token");
 	const { data: user = [], refetch: userRefetch } = useQuery({
-		queryKey: ["user", token],
+		// token
+		queryKey: ["user"],
 		queryFn: async () => {
-			if (!token) {
-				return [];
-			}
+			// if (!token) {
+			// 	return [];
+			// }
 			const res = await instanceSecure.get("/users", {
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
+				// headers: {
+				// 	Authorization: `Bearer ${token}`,
+				// },
 			});
 			return res.data;
 		},
@@ -32,12 +33,12 @@ const ManageUser = () => {
 		instanceSecure
 			.patch(
 				`/users/${user._id}?role=${role}`,
-				{},
-				{
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
-				}
+				{}
+				// {
+				// 	headers: {
+				// 		Authorization: `Bearer ${token}`,
+				// 	},
+				// }
 			)
 			.then((response) => {
 				console.log(response.data);

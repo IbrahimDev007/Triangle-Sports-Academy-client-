@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 const useAxiosInterceptor = () => {
 	const instanceSecure = axios.create({
-		baseURL: "https://triangle-sports.onrender.com",
+		// baseURL: "https://triangle-sports.onrender.com",
+		baseURL: "http://localhost:3000",
 	});
 	const { logOut } = useAuthHook();
 	const navigate = useNavigate();
@@ -14,11 +15,11 @@ const useAxiosInterceptor = () => {
 
 		// Add a request interceptor
 		instanceSecure.interceptors.request.use((config) => {
-			const token = localStorage.getItem("access-verify-token");
+			// const token = localStorage.getItem("access-verify-token");
 
-			if (token) {
-				config.headers.Authorization = `Bearer ${token}`;
-			}
+			// if (token) {
+			// 	config.headers.Authorization = `Bearer ${token}`;
+			// }
 
 			return config;
 		});

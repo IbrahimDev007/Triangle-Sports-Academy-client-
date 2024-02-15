@@ -20,6 +20,7 @@ import Services from "./Component/Services/Services";
 import { Contact } from "./Component/ContactUs/ContactUs";
 import Latest from "./Component/Latest/Latest";
 import Weekly from "./Component/Weekly/Weekly";
+import Alert from "./Component/Alert/Alert";
 const Home = () => {
 	const progressCircle = useRef(null);
 	const progressContent = useRef(null);
@@ -65,6 +66,7 @@ const Home = () => {
 
 	return (
 		<div className="px-4 min-w-full  mx-auto">
+			<Alert />
 			<section>
 				<div className="hero min-h-screen min-w-full bg-[url(https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg?size=626&ext=jpg)] bg-cover bg-center bg-no-repeat">
 					<div className="hero-overlay bg-opacity-60"></div>
